@@ -17,5 +17,6 @@
 			"label": "U_HelloWorld"
 		}
 	],
-	"lastProgramExecuted": "U_HelloWorld"
+	"lastProgramExecuted": "<cancel>",
+	"lastProgramArguments": []
 }
