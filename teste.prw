@@ -13,7 +13,6 @@
     @see (links_or_references)
     /*/
 User Function HelloWorld()
-    Local teste := 200
     MSGALERT('Hello, World')
 Return 
 
