@@ -11,7 +11,7 @@
     @example
     (examples)
     @see (links_or_references)
-    @teste01
+    @teste12
     /*/
 User Function HelloWorld()
     MSGALERT('Hello, World')
