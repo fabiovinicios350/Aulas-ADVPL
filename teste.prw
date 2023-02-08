@@ -14,6 +14,7 @@
     @teste12
     /*/
 User Function HelloWorld()
+    Local teste := 1
     MSGALERT('Hello, World')
 Return 
 
