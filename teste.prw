@@ -11,7 +11,6 @@
     @example
     (examples)
     @see (links_or_references)
-    @teste12
     /*/
 User Function HelloWorld()
     Local teste := 200
