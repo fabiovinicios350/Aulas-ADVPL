@@ -30,7 +30,10 @@
 		},
 		{
 			"label": "U_Tipos"
+		},
+		{
+			"label": "U_Funcoes"
 		}
 	],
-	"lastProgramExecuted": "U_Tipos"
+	"lastProgramExecuted": "U_Funcoes"
 }
