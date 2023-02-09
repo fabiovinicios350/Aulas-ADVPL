@@ -1,19 +1,29 @@
 #INCLUDE 'TOTVS.CH'
+#INCLUDE 'PROTHEUS.CH'
 
-/*/{Protheus.doc} User Function nomeFunction
-    (long_description)
-    @type  Function
-    @author user
-    @since 08/02/2023
-    @version version
-    @param param_name, param_type, param_descr
-    @return return_var, return_type, return_description
-    @example
-    (examples)
-    @see (links_or_references)
-    /*/
-User Function HelloWorld()
-    MSGALERT('Hello, World')
+User Function Calculadora()
+
+    LOCAL nNumero1
+    LOCAL nNumero2
+    LOCAL nSoma
+    
+    //Atribuindo valores para as variaveis
+    nNumero1 := val(FwInputBox("Digite um numero",nNumero1))
+    nNumero2 := val(FwInputBox("Digite um numero",nNumero2))
+
+    nSoma := Calculcar(nNumero1,nNumero2)
+
+    MSGALERT("A soma dos valores e:"+CVALTOCHAR( nSoma ))
+
 Return 
+
+Static Function Calculcar(nValor1,nValor2)
+
+return nValor1+nValor2
+
+    
+
+
+
 
 

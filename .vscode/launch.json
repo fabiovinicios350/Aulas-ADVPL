@@ -15,8 +15,13 @@
 	"lastPrograms": [
 		{
 			"label": "U_HelloWorld"
+		},
+		{
+			"label": "U_Calculadora"
+		},
+		{
+			"label": "U_Declaracao"
 		}
 	],
-	"lastProgramExecuted": "<cancel>",
-	"lastProgramArguments": []
+	"lastProgramExecuted": "U_Declaracao"
 }
