@@ -21,7 +21,16 @@
 		},
 		{
 			"label": "U_Declaracao"
+		},
+		{
+			"label": "U_pai"
+		},
+		{
+			"label": "U_mae"
+		},
+		{
+			"label": "U_Tipos"
 		}
 	],
-	"lastProgramExecuted": "U_Declaracao"
+	"lastProgramExecuted": "U_Tipos"
 }
