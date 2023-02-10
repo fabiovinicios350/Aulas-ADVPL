@@ -14,5 +14,5 @@ User Function Operadores()
   nDiv    := STR(nValor / nValor2)
   
 
-    FwAlertInfo()
+    FwAlertInfo(nDiv)
 Return 

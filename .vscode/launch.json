@@ -33,7 +33,10 @@
 		},
 		{
 			"label": "U_Funcoes"
+		},
+		{
+			"label": "U_Operadores"
 		}
 	],
-	"lastProgramExecuted": "U_Funcoes"
+	"lastProgramExecuted": "U_Operadores"
 }
