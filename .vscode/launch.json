@@ -39,7 +39,10 @@
 		},
 		{
 			"label": "U_Exemplo"
+		},
+		{
+			"label": "U_Exemplo02"
 		}
 	],
-	"lastProgramExecuted": "U_Exemplo"
+	"lastProgramExecuted": "U_Exemplo02"
 }
