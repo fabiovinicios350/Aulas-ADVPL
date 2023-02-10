@@ -2,17 +2,18 @@
 
 
 User Function Exemplo()
-  Local cNome  := ''
-  Local Nnota1   := 0
-  Local Nnota2   := 0
-  Local Nnota3   := 0
-  Local nMedia   := 0
+  Local cNome     := ''
+  Local cNota     := ''
+  Local Nnota1    := 0
+  Local Nnota2    := 0
+  Local Nnota3    := 0
+  Local nMedia    := 0
 
-  cNome := FwInoutBox('Digite seu Nome: ', cNome)
+  cNome := FwInputBox('Digite seu Nome: ', cNome)
   
-  Nnota1 := val(FwInoutBox('Digite a primeira Nota: ', Nnota1))
-  Nnota2 := val(FwInoutBox('Digite a Segunda Nota: ', Nnota2))
-  Nnota3 := val(FwInoutBox('Digite a terceira Nota: ', Nnota3))
+  Nnota1 := val(FwInputBox('Digite a primeira Nota: ', cNota))
+  Nnota2 := val(FwInputBox('Digite a Segunda Nota: ', cNota))
+  Nnota3 := val(FwInputBox('Digite a terceira Nota: ', cNota))
 
   nMedia := (Nnota1 + Nnota2 + Nnota3) / 3
 

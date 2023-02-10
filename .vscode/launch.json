@@ -36,7 +36,10 @@
 		},
 		{
 			"label": "U_Operadores"
+		},
+		{
+			"label": "U_Exemplo"
 		}
 	],
-	"lastProgramExecuted": "U_Operadores"
+	"lastProgramExecuted": "U_Exemplo"
 }
