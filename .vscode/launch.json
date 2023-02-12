@@ -48,7 +48,25 @@
 		},
 		{
 			"label": "U_ExemploWhile"
+		},
+		{
+			"label": "U_ValorAntecessor"
+		},
+		{
+			"label": "U_CalulaRetangulo"
+		},
+		{
+			"label": "U_CalcularIdade"
+		},
+		{
+			"label": "U_CalculandoSalario"
+		},
+		{
+			"label": "U_CalculaCustoFinal"
+		},
+		{
+			"label": "U_ConverterFahrCels"
 		}
 	],
-	"lastProgramExecuted": "U_ExemploWhile"
+	"lastProgramExecuted": "U_ConverterFahrCels"
 }
