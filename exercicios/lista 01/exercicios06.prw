@@ -1,6 +1,5 @@
 //Bibliotecas
 #INCLUDE "TOTVS.CH"
-#INCLUDE "validacao.prw"
 
 /*/
   @author Fabio
@@ -13,7 +12,7 @@ User Function ConverterFahrCels()
   Local nCels
 
   FwAlertInfo("Algoritimos para converter graus Fahrenheit em Celsius","Bem vindo!")
-  RecebeInput(@cFahr,'numerico','Digite a temperatura em graus Fahrenheit: ')
+  U_RecebeInput(@cFahr,'numerico','Digite a temperatura em graus Fahrenheit: ')
 
   nCels := (val(cFahr)-32)/1.80000
 

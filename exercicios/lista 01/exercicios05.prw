@@ -1,6 +1,5 @@
 //Bibliotecas
 #INCLUDE "TOTVS.CH"
-#INCLUDE "validacao.prw"
 
 /*/
   @author Fabio
@@ -14,7 +13,7 @@ User Function CalculaCustoFinal()
 
   FwAlertInfo("Algoritimos para Calcular o custo final de um carro","Bem vindo!")
 
-  RecebeInput(@cCustoFabrica,'numerico','Digite o Custo de fabrica do carro: ')
+  U_RecebeInput(@cCustoFabrica,'numerico','Digite o Custo de fabrica do carro: ')
 
   nSalarioNovo := val(cCustoFabrica) + (val(cCustoFabrica)*(28/100)) + (val(cCustoFabrica)*(45/100))
 

@@ -1,6 +1,5 @@
 //Bibliotecas
 #INCLUDE "TOTVS.CH"
-#INCLUDE "validacao.prw"
 
 /*/
   @author Fabio
@@ -14,8 +13,8 @@ User Function CalulaRetangulo()
 
   FwAlertInfo("Algoritimos Calculcar a area de um retangulo","Bem vindo!")
 
-  RecebeInput(@cBase,"numerico","Digite o valor da Base do retangulo: ")
-  RecebeInput(@cAltura,"numerico","Digite o valor da Altura do retangulo: ")
+  U_RecebeInput(@cBase,"numerico","Digite o valor da Base do retangulo: ")
+  U_RecebeInput(@cAltura,"numerico","Digite o valor da Altura do retangulo: ")
 
   nArea := val(cBase)*val(cAltura)
 

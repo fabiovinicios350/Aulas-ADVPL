@@ -1,9 +1,9 @@
 #INCLUDE "TOTVS.CH"
 
-Static Function RecebeInput(cValor,cTipo,cTextoInput)
+User Function RecebeInput(cValor,cTipo,cTextoInput)
 
     cValor := FwInputBox(cTextoInput,cValor)
-
+    Alert("testeteste")
     while(ValidarCaracter(cValor,cTipo)=.F.)
         cValor := ""
         FwAlertError("O Valor informado nao é valor"+cTipo+", clicar em fechar para digitar o valor novamente","Valor Invalido!")

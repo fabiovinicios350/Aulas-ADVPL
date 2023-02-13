@@ -1,6 +1,5 @@
 //Bibliotecas
 #INCLUDE "TOTVS.CH"
-#INCLUDE "validacao.prw"
 
 /*/
   @author Fabio
@@ -16,8 +15,8 @@ User Function CalculoHorasExtras()
   Local nValorHora
 
   FwAlertInfo("Algoritimos para calcular as horas extras de um funcionario","Bem vindo!")
-  RecebeInput(@cSalario,'numerico','Digite o seu salario mensal: ')
-  RecebeInput(@cHorasTrabalhada,'numerico','Digite a quantidade de horas trabalhas: ')
+  U_RecebeInput(@cSalario,'numerico','Digite o seu salario mensal: ')
+  U_RecebeInput(@cHorasTrabalhada,'numerico','Digite a quantidade de horas trabalhas: ')
 
   nValorHora := (val(cSalario)/28)/8
 

@@ -1,6 +1,5 @@
 //Bibliotecas
 #INCLUDE "TOTVS.CH"
-#INCLUDE "validacao.prw"
 
 /*/
   @author Fabio
@@ -12,13 +11,7 @@ User Function ValorAntecessor()
   Local cValor := ""
   
   FwAlertInfo("Algoritimos para mostrar o numero antecessor","Bem vindo!")
-  cValor := FwInputBox("Digite um valor para calulcar o antecessor: ",cValor)
-
-  while(ValidarCaracter(cValor,"numerico")=.F.)
-    cValor := ""
-    FwAlertError("O Valor informado nao é um numero, clicar em fechar para digitar o valor novamente","Valor Invalido!")
-    cValor := FwInputBox("Digite um valor para calulcar o antecessor: ",cValor)
-  enddo
+  U_RecebeInput(@cValor,"numerico","Digite um numero: ")
 
   nAntec := val(cValor)-1
 

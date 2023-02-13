@@ -1,6 +1,5 @@
 //Bibliotecas
 #INCLUDE "TOTVS.CH"
-#INCLUDE "validacao.prw"
 
 /*/
   @author Fabio
@@ -13,7 +12,7 @@ User Function ValidarPostivo()
   Local cResultado
 
   FwAlertInfo("Algoritimos mostra se o numero e positivo ou negativo","Bem vindo!")
-  RecebeInput(@cNumero,'numerico','Digite um numero: ')
+  U_RecebeInput(@cNumero,'numerico','Digite um numero: ')
 
   if(Asc(SubStr(cNumero,1,1))==45)
     cResultado := 'Negativo'

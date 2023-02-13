@@ -1,6 +1,5 @@
 //Bibliotecas
 #INCLUDE "TOTVS.CH"
-#INCLUDE "validacao.prw"
 
 /*/
   @author Fabio
@@ -15,8 +14,8 @@ User Function CalculandoSalario()
 
   FwAlertInfo("Algoritimos Calculcar o ajuste de um salario","Bem vindo!")
 
-  RecebeInput(@cSalario,'numerico','Digite o seu salario: ')
-  RecebeInput(@cAjuste,'numerico','Digite a porcentagem de ajuste')
+  U_RecebeInput(@cSalario,'numerico','Digite o seu salario: ')
+  U_RecebeInput(@cAjuste,'numerico','Digite a porcentagem de ajuste')
 
   nSalarioNovo := val(cSalario) + (val(cSalario)*(val(cAjuste)/100))
 
