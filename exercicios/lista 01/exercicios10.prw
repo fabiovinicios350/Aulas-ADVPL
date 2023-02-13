@@ -9,26 +9,22 @@
 
 User Function OrderandoValor()
   
-  Local cValor01
-  Local cValor02
-  Local cValor03
-  Private aOrdenado := []
+  Local cValor := {0,0,0}
+  Local nOrdenado := {}
+  Local i
 
   FwAlertInfo("Algoritimos Order os valores indormado","Bem vindo!")
-  RecebeInput(@cValor01,'numerico','Digite um numero: ')
+  RecebeInput(@cValor[1],'numerico','Digite um numero: ')
+  RecebeInput(@cValor[2],'numerico','Digite um numero: ')
+  RecebeInput(@cValor[3],'numerico','Digite um numero: ')
 
-  
+   for i=1 to len(cValor)
+        nRetorno := CalcularMenor(nValor)
+        AAdd(nOrdem,nRetorno[1])
+        ADel(nValor,nRetorno[2])
+    next i
+
+
+
 
 Return 
-
-
-Static Function OrdenaValor(cValor)
-  Local aAux := []
-
-  for i:=0 to len(aAux)
-
-  next i
-
-Return 
-
-
