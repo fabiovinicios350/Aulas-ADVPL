@@ -7,7 +7,7 @@
   @since 11/02/2023
 /*/
 
-User Function CalculandoCompra()
+User Function CalculoMaca()
   
   Local cQuant
   Local nTotal
@@ -15,10 +15,14 @@ User Function CalculandoCompra()
   FwAlertInfo("Algoritimos para calcular o valor da compra","Bem vindo!")
   RecebeInput(@cQuant,'numerico','Digite a quantidade de maça: ')
 
-  nTotal := 
+  if val(cQuant)>=12
+    nTotal := val(cQuant)*1.00
+  else
+    nTotal := val(cQuant)*1.30
+  endif
 
-  FwAlertSuccess('Fahrenheit: '+cFahr+CRLF+;
-                'Celsius: '+cValToChar(cCels),'Resultado!')
+  FwAlertSuccess('Quantidade de maça: '+cQuant+CRLF+;
+                'Total a pagar: '+cValToChar(nTotal),'Resultado!')
 
 Return 
 

@@ -18,7 +18,7 @@ User Function ConverterFahrCels()
   nCels := (val(cFahr)-32)/1.80000
 
   FwAlertSuccess('Fahrenheit: '+cFahr+CRLF+;
-                'Celsius: '+cValToChar(nCels),'Resultado!')
+                'Celsius: '+cValToChar(round(nCels,2)),'Resultado!')
 
 Return 
 

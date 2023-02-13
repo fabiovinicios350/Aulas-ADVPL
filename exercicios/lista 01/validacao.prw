@@ -28,7 +28,7 @@ Static Function ValidarCaracter(texto,tipo)
         elseif i==len(texto)
             exit
         else
-            if((IsDigit(ctexto)=.T. .And. tipo="numerico") .or. (Asc(ctexto)==45 .And. tipo="numerico" .and. i=0) .or. (Asc(ctexto)==46 .and. tipo="numerico" .and. nPonto==0 .and. i <> 0 .and. i <> len(texto)-1))
+            if((IsDigit(ctexto)=.T. .And. tipo="numerico") .or. (Asc(ctexto)==45 .And. tipo="numerico" .and. i=0 .and. len(texto)>1) .or. (Asc(ctexto)==46 .and. tipo="numerico" .and. nPonto==0 .and. i <> 0 .and. i <> len(texto)-1))
                 if(Asc(ctexto)==46)
                     nPonto++
                 endif
