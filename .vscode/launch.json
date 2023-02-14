@@ -111,7 +111,31 @@
 		},
 		{
 			"label": "U_Imp1aN"
+		},
+		{
+			"label": "U_Tabuada"
+		},
+		{
+			"label": "U_PositivoNegativo"
+		},
+		{
+			"label": "U_Intervalo1020"
+		},
+		{
+			"label": "U_SomaEntreNumeros"
+		},
+		{
+			"label": "U_MediaEntre15100"
+		},
+		{
+			"label": "U_ImprimeSequencia"
+		},
+		{
+			"label": "U_PesquisaNome"
+		},
+		{
+			"label": "U_MostrandoInverso"
 		}
 	],
-	"lastProgramExecuted": "U_Imp1aN"
+	"lastProgramExecuted": "U_MostrandoInverso"
 }

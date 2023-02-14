@@ -8,23 +8,23 @@
 
 User Function Tabuada()
   Local nNumero
+  Local cMensagem := ''
   Local i
 
-  FwAlertInfo("Algoritimos Imprimir numero de 1 a N","Bem vindo!")
+  FwAlertInfo("Algoritimos para calcular a tabuada","Bem vindo!")
 
-  U_RecebeInput(@nNumero,'numerico','Digite um numero: ')
+  U_RecebeInput(@nNumero,'numerico','Digite um numero de 1 a 10: ')
 
-
-  while(val(nNumero)<1)
+  while(val(nNumero)>10 .and. val(nNumero)<1)
     nNumero := ""
-    FwAlertError("Numero precisa ser positivo, por favor tente novamente","Valor Invalido!")
-    U_RecebeInput(@nNumero,'numerico','Digite um numero: ')
+    FwAlertError("Numero precisa se entre 1 e 10","Valor Invalido!")
+    U_RecebeInput(@nNumero,'numerico','Digite um numero de 1 a 10: ')
   enddo
 
-  for i:=1 to val(nNumero)
-    cMensagem += cValToChar(i)+' '
+  for i:=1 to 10
+    cMensagem += cValToChar(i)+' X '+nNumero+' = '+cValToChar(val(nNumero)*i)+CRLF
   next i
 
-   FwAlertSuccess('Resultado: '+cMensagem,'Resultado!')
+  FwAlertSuccess(cMensagem,'Resultado!')
 
 Return
