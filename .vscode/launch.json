@@ -135,7 +135,40 @@
 		},
 		{
 			"label": "U_MostrandoInverso"
+		},
+		{
+			"label": "U_MultiplicaArray"
+		},
+		{
+			"label": "U_OrdernarArray"
+		},
+		{
+			"label": "U_EcontrandoArray"
+		},
+		{
+			"label": "U_RepeteArray"
+		},
+		{
+			"label": "U_IdadePeso"
+		},
+		{
+			"label": "U_InfIdade"
+		},
+		{
+			"label": "U_Fatorial"
+		},
+		{
+			"label": "U_TabelaDesconto"
+		},
+		{
+			"label": "U_IdadePessoas"
+		},
+		{
+			"label": "U_QuantIdade"
+		},
+		{
+			"label": "U_SorteiaAluno"
 		}
 	],
-	"lastProgramExecuted": "U_MostrandoInverso"
+	"lastProgramExecuted": "U_RepeteArray"
 }

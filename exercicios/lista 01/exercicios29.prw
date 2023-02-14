@@ -6,24 +6,28 @@
   @since 12/02/2023
 /*/
 
-User Function MostrandoInverso()
-  local aNumero := {}
+User Function MultiplicaArray()
+  Local aNumeros := {}
+  Local aNumerosMult := {}
+  local cMensagem := ''
   Local cNumero
-  Local cMensagem := ''
-  Local i
+  Local nNum
+  Local nI
 
-  FwAlertInfo("Algoritimos para imprimir o array invertido","Bem vindo!")
+  FwAlertInfo("Algoritimos para multiplicar os valores do arrya","Bem vindo!")
 
-  For i:=1 to 10
+  For nI:=1 to 10
     cNumero := ''
     U_RecebeInput(@cNumero,'numerico','Digite um numero: ')
-    aadd(aNumero,val(cNumero))
-  next i
+    aadd(aNumeros,val(cNumero))
+  next nI
 
-  For i:=len(aNumero) to 1 step i-1
-    cMensagem := ' '+cValToChar(aNumero[i])
-  next 
-  
-  FwAlertSuccess('Resultado Invertido: '+cMensagem,'Resultado!')
+  U_RecebeInput(@nNum,'numerico','Digite um numero para multiplicar os valores da array: ')
 
+   For nI:=1 to len(aNumeros)
+    aadd(aNumerosMult,(aNumeros[nI]*val(nNum)))
+    cMensagem += ' '+cValToChar(aNumeros[nI]*val(nNum))
+  next nI
+
+  FwAlertSuccess('Resultado e: '+cMensagem,'Resultado!')
 Return
