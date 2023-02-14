@@ -75,7 +75,43 @@
 		},
 		{
 			"label": "U_ValidarPostivo"
+		},
+		{
+			"label": "U_OrderandoValor"
+		},
+		{
+			"label": "U_ValidarTrinagulo"
+		},
+		{
+			"label": "U_ValidaVencedor"
+		},
+		{
+			"label": "U_CalculaoDesconto"
+		},
+		{
+			"label": "U_CalDiv"
+		},
+		{
+			"label": "U_CalculaMediaAluno"
+		},
+		{
+			"label": "U_CalMediaAluno01"
+		},
+		{
+			"label": "U_Imprimir1a10"
+		},
+		{
+			"label": "U_Imprimir10a1"
+		},
+		{
+			"label": "U_Imprimi10a1"
+		},
+		{
+			"label": "U_Imprimi10apart100"
+		},
+		{
+			"label": "U_Imp1aN"
 		}
 	],
-	"lastProgramExecuted": "U_CalculaCustoFinal"
+	"lastProgramExecuted": "U_Imp1aN"
 }
