@@ -7,13 +7,45 @@
 /*/
 
 User Function CalculoSalario()
-  Local aAluno := {{0,'Daniele'},{1,'Edison'},{2,'Fabio'},{3,'Gabriela'},{4,'Giulliana'},{5,'Gustavo F'},{6,'Gustavo H'},{7,'Henrique'},{8,'Joao'},{9,'Lucas'},{10,'Matheus'},{11,'Natan'},{12,'Ruan'},{13,'Tamiris'},{14,'Vinicius'},{15,'Alexandre Junior'},{16,'André Santos'},{17,'Ighor Lima'},{18,'Gustavo Correia'}}
-  Local nSorteio
+  Local cValorHora
+  Local cQuantHora
+  Local nSalarioBruto
+  Local nSalarioLiquido
+  Local nIR
+  local nPorc
+  Local nINSS
+  Local nFGTS
+  Local nDescontos
 
-  FwAlertInfo("Algoritimo para Sortear Aluno","Bem vindo!")
+  FwAlertInfo("Algoritimo Calcular o salario liquido","Bem vindo!")
 
-  nSorteio := Randomize( 1, len(aAluno))
+  U_RecebeInput(@cValorHora,'numerico','Digite o valor da sua hora de trabalho: ')
+  U_RecebeInput(@cQuantHora,'numerico','Digite a quantidade de horas trabalhadas: ')
 
-  FwAlertSuccess('O Nome sortiado e o: '+aAluno[nSorteio][2],'Resultado!')
+  nSalarioBruto:= val(cValorHora)*val(cQuantHora)
+
+  nINSS := nSalarioBruto*0.10
+  nFGTS := nSalarioBruto*0.11
+
+  if(nSalarioBruto<=1200)
+    nPorc := 0
+  elseif(nSalarioBruto<=1800) 
+    nPorc := 5
+  elseif(nSalarioBruto<=2500) 
+    nPorc := 10
+  else
+    nPorc:= 20
+  endif
+
+  nIR := nSalarioBruto*(nPorc/100)
+  nDescontos := nIR + nINSS
+  nSalarioLiquido := nSalarioBruto - nDescontos
+
+  FwAlertSuccess('Salario bruto: '+cValToChar(nSalarioBruto)+CRLF+;
+                'IR ('+cValToChar(nPorc)+'%): '+cValToChar(nIR)+CRLF+;
+                'INSS (10%): '+cValToChar(nINSS)+CRLF+;
+                'FGTS (11%): '+cValToChar(nFGTS)+CRLF+;
+                'Total de desconto: '+cValToChar(nDescontos)+CRLF+;
+                'Salario liquido: '+cValToChar(nSalarioLiquido),'Resultado!')
 
 Return

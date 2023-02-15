@@ -168,7 +168,10 @@
 		},
 		{
 			"label": "U_SorteiaAluno"
+		},
+		{
+			"label": "U_CalculoSalario"
 		}
 	],
-	"lastProgramExecuted": "U_RepeteArray"
+	"lastProgramExecuted": "U_CalculoSalario"
 }
