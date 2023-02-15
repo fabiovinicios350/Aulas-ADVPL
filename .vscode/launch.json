@@ -171,7 +171,31 @@
 		},
 		{
 			"label": "U_CalculoSalario"
+		},
+		{
+			"label": "U_testeObjet"
+		},
+		{
+			"label": "U_SDPQNumero"
+		},
+		{
+			"label": "U_CalCombustivel"
+		},
+		{
+			"label": "U_CalCarroCombustivel"
+		},
+		{
+			"label": "U_SDPQNums"
+		},
+		{
+			"label": "U_NumerDQ"
+		},
+		{
+			"label": "U_DolarReal"
+		},
+		{
+			"label": "U_Divisivel23"
 		}
 	],
-	"lastProgramExecuted": "U_CalculoSalario"
+	"lastProgramExecuted": "U_Divisivel23"
 }
