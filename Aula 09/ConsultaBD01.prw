@@ -24,7 +24,7 @@ User Function BusProdSQL()
   TCQUERY cQuery ALIAS &(cAlias) NEW
 
   while &(cAlias)->(!EOF())
-    cDescr := &(cAlias)>B1_DESC
+    cDescr := &(cAlias)->B1_DESC
     &(cAlias)->(DbSkip())
   enddo
 
