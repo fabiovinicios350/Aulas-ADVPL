@@ -12,12 +12,14 @@
 User Function DolarReal()
   Local nDolar
   Local nReal
+  local nConversao
 
   FwAlertInfo(cTITULO,"Bem vindo!")
   
-  U_FwInputBoxVal(@nDolar,'N','Digite o primeiro numero')
+  U_FwInputBoxVal(@nConversao,'N','Digite a cotacao atual de dolar para real: ')
+  U_FwInputBoxVal(@nDolar,'N','Digite a quantidade de dolar a ser convertido: ')
   
-  nReal := nDolar * 5.22
+  nReal := nDolar * nConversao
 
   FwAlertSuccess('Dolar: '+cValToChar(nDolar)+CRLF+;
                 'Real: '+cValToChar(nReal),'Resultado!')

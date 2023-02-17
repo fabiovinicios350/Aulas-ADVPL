@@ -2,31 +2,32 @@
 #INCLUDE "TOTVS.CH"
 
 //Constantes5
-#DEFINE cTITULO 'Algoritimos '
+#DEFINE cTITULO 'Algoritimos para calculcar o tempo de uma partida de poker'
 
 /*/
   @author Fabio
   @since 12/02/2023
 /*/
 
-User Function Divisivel23()
-  Local cMensagem := ''
-  Local nNumero
-  Local i
+User Function HorasJogo()
+  Local nHoras
+  Local nInicio
+  Local nFinal
 
   FwAlertInfo(cTITULO,"Bem vindo!")
+  
+  U_FwInputBoxVal(@nInicio,'N','Digite a hora que comecou o jogo')
+  U_FwInputBoxVal(@nFinal,'N','Digite a hora que terminou o jogo')
 
-  for i:=1 to 4
-    nNumero := ''
-    U_FwInputBoxVal(@nNumero,'N','Digite o primeiro numero')
-    if(nNumero%2==0 .and. nNumero%3==0)
-      cMensagem += ' '+cValToChar(nNumero)
-    endif
-  next i
+  nInicio := round(nInicio,2)
+  nFinal := round(nFinal,2)
 
-  if(len(cMensagem)>1)
-    FwAlertSuccess('Numero divisiveis por 2 e 3: '+cMensagem,'Resultado!')
+  if(nInicio<nFinal)
+    nHoras := nFinal - nInicio
   else
-    FwAlertSuccess('nenhum dos numeros informado e divisivel por 2 e 3 ','Resultado!')
-  endif
+    nHoras:= 24 - nInicio + nFinal
+  ENDIF
+  
+  FwAlertSuccess('Quantidade de horas de jogo:'+cValToChar(nHoras),'Resultado!')
+
 Return

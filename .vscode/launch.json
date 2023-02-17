@@ -195,7 +195,40 @@
 		},
 		{
 			"label": "U_Divisivel23"
+		},
+		{
+			"label": "U_LogarUsuario"
+		},
+		{
+			"label": "U_ExibeMes"
+		},
+		{
+			"label": "U_MenorNumero"
+		},
+		{
+			"label": "U_NumeroAleatorioWhile"
+		},
+		{
+			"label": "U_ForNumeroAleatorio"
+		},
+		{
+			"label": "U_multiplos3"
+		},
+		{
+			"label": "U_XMultiplo"
+		},
+		{
+			"label": "U_NCalcula"
+		},
+		{
+			"label": "U_Fibonacci"
+		},
+		{
+			"label": "U_HorasJogo"
+		},
+		{
+			"label": "U_CadastroLogin"
 		}
 	],
-	"lastProgramExecuted": "U_Divisivel23"
+	"lastProgramExecuted": "U_CadastroLogin"
 }
