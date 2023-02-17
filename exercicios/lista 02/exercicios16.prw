@@ -19,7 +19,6 @@ User Function CadastroLogin()
     FwAlertInfo(cTITULO,"Bem vindo!")
 
     cUserName :=FwInputBox('Digite um UserName: ',cUserName)
-
     while (len(cUserName)<=5)
       cUserName := ""
       FwAlertError("O UserName precisa contar mais de 5 caracteres","Valor Invalido!")
@@ -49,8 +48,6 @@ User Function CadastroLogin()
 
   FwAlertInfo('Fim do algoritimo','Resultado!')
 Return
-
-
 
 
 Static Function ValidaSenha(texto)

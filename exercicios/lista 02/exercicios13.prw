@@ -27,7 +27,7 @@ User Function XMultiplo()
 
     for nI:= 1 to nFim
       if(nI%nMultiplo==0)
-      nMensagem += ' '+cValToChar(nI)+','
+        nMensagem += ' '+cValToChar(nI)+','
       endif
     next nI
   

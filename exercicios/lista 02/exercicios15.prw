@@ -16,6 +16,7 @@ User Function Fibonacci()
   Local nFibonacci    := 1
   Local nNumero
   Local nI
+  Local cMensagem     := '{'
 
   while(lTentar)
     nAnterior     := 0
@@ -33,9 +34,11 @@ User Function Fibonacci()
       endif
       nAnterior  := nAtual
       nAtual   := nFibonacci
+      cMensagem += ' '+cValToChar(nFibonacci)+','
     next nI
 
-    FwAlertSuccess('A soma do Fibonacci e:'+cValToChar(nFibonacci),'Resultado!')
+    cMensagem += '}'
+    FwAlertSuccess('A Serie do Fibonacci('+cValToChar(nNumero)+') e: '+cMensagem,'Resultado!')
     lTentar := MsgyesNo("Deseja tentar novamente? ","Tentar Novamente")
   enddo
 
