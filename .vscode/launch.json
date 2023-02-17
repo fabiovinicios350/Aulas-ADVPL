@@ -228,7 +228,10 @@
 		},
 		{
 			"label": "U_CadastroLogin"
+		},
+		{
+			"label": "U_JogoAdivinha"
 		}
 	],
-	"lastProgramExecuted": "U_Fibonacci"
+	"lastProgramExecuted": "U_JogoAdivinha"
 }
