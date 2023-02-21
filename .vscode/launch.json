@@ -240,7 +240,64 @@
 		},
 		{
 			"label": "U_BuscaPedidoFor"
+		},
+		{
+			"label": "U_exemploJsonFabio"
+		},
+		{
+			"label": "U_CliBuscaPedido"
+		},
+		{
+			"label": "U_BuscaProdutoVenda"
+		},
+		{
+			"label": "U_BuscaProdutoGrupo"
+		},
+		{
+			"label": "U_GrupoBuscaProduto"
+		},
+		{
+			"label": "U_ApresentaProdutosDesc"
+		},
+		{
+			"label": "U_List3PesquisaProduto"
+		},
+		{
+			"label": "U_List03pesquisaPedidoData"
+		},
+		{
+			"label": "U_List3MaiorvalorProduto"
+		},
+		{
+			"label": "U_MediaDeVendaProduto"
+		},
+		{
+			"label": "U_FornecedorSP"
+		},
+		{
+			"label": "U_MenorMaior"
+		},
+		{
+			"label": "U_ExibirSemana"
+		},
+		{
+			"label": "U_ExibeMediaMes"
+		},
+		{
+			"label": "U_InverterNome"
+		},
+		{
+			"label": "U_VertiacalNome"
+		},
+		{
+			"label": "U_NomeVertiacal"
+		},
+		{
+			"label": "U_ContarCaracter"
+		},
+		{
+			"label": "U_CorrigirGrupo"
 		}
 	],
-	"lastProgramExecuted": "U_BuscaPedidoFor"
+	"lastProgramExecuted": "U_CorrigirGrupo"
 }
