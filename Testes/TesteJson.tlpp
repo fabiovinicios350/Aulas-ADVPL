@@ -1,0 +1,13 @@
+// #include 'tlpp-core.th'
+// #include 'tlpp-rest.th'
+#INCLUDE 'TOTVS.CH'
+
+user function jsonObject_exemplo1()
+  
+  Local jUser := {"nome":"Tiago ","email":"jjTiago@yahoo.com.br","senha":"fabio1998","sexo":"masculino","foto_perfil":"","cpf":"67893849","estado":"SP","cidade":"Sao paulo","cep":"039420-80","rua":"rua rio das pedras","numero":"518","complemento":"","pontoReferencia":""} as Json
+
+  alert(valType(jUser))
+
+  alert(jUser["nome"])
+ 
+return   

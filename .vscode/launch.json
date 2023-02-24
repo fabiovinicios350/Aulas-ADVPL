@@ -297,7 +297,25 @@
 		},
 		{
 			"label": "U_CorrigirGrupo"
+		},
+		{
+			"label": "U_jsonObject_exemplo1"
+		},
+		{
+			"label": "U_jsonObject_exemplo2"
+		},
+		{
+			"label": "U_BuscaEndereco"
+		},
+		{
+			"label": "U_IntVisual"
+		},
+		{
+			"label": "SIGACOM"
+		},
+		{
+			"label": "SIGACFG"
 		}
 	],
-	"lastProgramExecuted": "U_CorrigirGrupo"
+	"lastProgramExecuted": "SIGACFG"
 }

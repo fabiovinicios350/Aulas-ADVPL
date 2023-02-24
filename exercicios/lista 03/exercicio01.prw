@@ -15,7 +15,7 @@
 User Function BuscaPedidoFor()
   Local aArea       := GetArea()
   Local cAlias      := GetNextAlias()
-  Local cCodigoFor  := 'F00004'
+  Local cCodigoFor  := 'F00003'
   local cQuery      := ''
   local cMensagem   := ''
   Local cPedidoAux  := '0'
@@ -39,9 +39,10 @@ User Function BuscaPedidoFor()
     cDescri := &(cAlias)->(C7_DESCRI)
     if(cPedidoAux<>cPedido)
       cPedidoAux:=cPedido
-      cMensagem += '--------------------'+CRLF
+      cMensagem += +CRLF+'----------------------------------------------------------'+CRLF
+      cMensagem += '<h3>Pedido '+cPedido+'</h3>'
     endif
-    cMensagem += 'Pedido '+cPedido+': '+cProduto+' - '+cDescri+CRLF
+    cMensagem += 'Produto: '+cProduto+' - '+cDescri+CRLF
     &(cAlias)->(DbSkip())
   enddo
 

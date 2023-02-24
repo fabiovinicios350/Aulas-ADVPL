@@ -1,7 +1,7 @@
 //Bibliotecas
 #INCLUDE "TOTVS.CH"
 
-//Constantes5
+//Constantes
 #DEFINE cTITULO 'Algoritimo para contar caracteres'
 
 /*/

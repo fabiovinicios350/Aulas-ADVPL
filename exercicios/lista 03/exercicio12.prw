@@ -6,7 +6,6 @@
 //Constantes
 #DEFINE cTITULO 'Algoritimo para mostrar o produto mais caro e o produto mais barato'
 
-
 /*/
   @author Fabio
   @since ../../2023
