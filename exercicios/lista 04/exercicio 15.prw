@@ -11,7 +11,7 @@
 /*/
 
 
-User Function Ex11List04()
+User Function Ex15List04()
   Local cCodigo       := space(15)
   Local oDlg
   Local cTituloDlg    := 'Pesquisa de produto'
@@ -44,6 +44,7 @@ Static Function Resultado(cCodigo)
   local cQuery      := ''
   Local cDescr
   Local cPrecoVenda
+  Local lCadastro   := .F.
 
   cResultado := 'RESULTADO'
 
@@ -65,8 +66,15 @@ Static Function Resultado(cCodigo)
   enddo
 
   if(cDescricao=='')
-    fwAlertError("Produto não foi encontrado na nossa base de dados",'Produto nao existe')
+    lCadastro := MsgyesNo("Produto não foi encontrado na nossa base de dados, deseja cadastrar o produto?",'Produto nao existe')
+    if(lCadastro)
+      Axcadastro('SB1', "Cadastrar Produto")
+    endif
   endif
+
+
+
+  
 
   &(cAlias)->(DbCloseArea())
   RestArea(aArea)

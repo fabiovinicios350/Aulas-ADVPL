@@ -43,7 +43,7 @@ Return
 Static Function Resultado(cDolar,cQuantidade)
 
   cResultado := 'Resultado'
-
+  
   cRes := "Valor em Real: R$ "+cValToChar(val(cDolar) * val(cQuantidade))
 
 return
