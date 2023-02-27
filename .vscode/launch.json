@@ -315,7 +315,49 @@
 		},
 		{
 			"label": "SIGACFG"
+		},
+		{
+			"label": "U_Ex01List04"
+		},
+		{
+			"label": "U_Ex02List04"
+		},
+		{
+			"label": "U_Ex03List04"
+		},
+		{
+			"label": "U_Ex04List04"
+		},
+		{
+			"label": "U_FabioCalculadora"
+		},
+		{
+			"label": "U_U_FabioCalculadora"
+		},
+		{
+			"label": "U_Ex05List04"
+		},
+		{
+			"label": "U_Ex06List04"
+		},
+		{
+			"label": "U_Ex07List04"
+		},
+		{
+			"label": "U_Ex08List04"
+		},
+		{
+			"label": "U_Ex09List04"
+		},
+		{
+			"label": "U_Ex10List04"
+		},
+		{
+			"label": "U_Ex102List04"
+		},
+		{
+			"label": "U_Ex11List04"
 		}
 	],
-	"lastProgramExecuted": "SIGACOM"
+	"lastProgramExecuted": "U_Ex11List04"
 }
