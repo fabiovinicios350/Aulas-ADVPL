@@ -11,7 +11,47 @@
 
 
 User Function FabioCalculadora()
-  Local cTituloDlg   := 'calculadora' 
+  #DEFINE COLOR_BLACK RGB(0,0,0)
+
+  Local cInputCSS := ""+;
+  "QLineEdit {"+;
+    "background: rgb(0, 0, 0);"+;
+    "border: none;"+; 
+    "font: normal 23px Arial;"+;
+    "color: #ffffff;"+;
+  "}"+;
+  "QPushButton {"+;
+    "border: none;"+; 
+    "border-radius: 22%;"+; 
+    "font: normal 18px Arial;"+;
+    "color: #ffffff;"+;
+  "}"
+
+  Local cOpcoesCSS := ""+;
+  "QPushButton {"+;
+    "background: rgb(236, 128, 4);"+;
+  "}"+; 
+  "QPushButton:pressed {"+;
+    "background-color:  rgb(243, 179, 106);"+; 
+  "}"
+
+  Local cFuncoesCSS := ""+;
+  "QPushButton {"+;
+    "background: rgb(179, 179, 179);"+;
+    "color: #000;"+;
+  "}"+; 
+  "QPushButton:pressed {"+;
+    "background-color:  rgb(215, 215, 215);"+; 
+  "}"
+  Local cNumeroCSS := ""+;
+  "QPushButton {"+;
+    "background: rgb(58, 58, 58);"+;
+  "}"+; 
+  "QPushButton:pressed {"+;
+    "background-color:  rgb(155, 155, 155);"+; 
+  "}"
+
+  Local cTituloDlg   := 'Calculadora' 
   Local oDlg
   Private nValor      := 0
   Private cOperacao   := ''
@@ -19,38 +59,60 @@ User Function FabioCalculadora()
   Private nVigula     := 0
   Private nOpPendente := .F.
 
+
   FwAlertInfo(cTITULO,"Bem vindo!")
 
-  oDlg := MsDialog():New(0, 0, 324, 208, cTituloDlg, , , , , , RGB(0, 153, 204), , , .T.)
+  
+  oDlg := MSDIALOG():New(0, 0, 344, 228, cTituloDlg, , , , , , COLOR_BLACK, , , .T.)
+  oDlg:SetCss(cInputCSS)
 
-  @ 005, 004 MSGET nValor SIZE 97, 25 OF oDlg PIXEL PICTURE'@E 999,999,999,999,999.999' 
+  oNumero := TGet():New( 005, 006, { | u | If( PCount() == 0, nValor, nValor := u ) },oDlg, ;
+  130, 25, "@E 999,999,999,999,999.999",,,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F. ,,"nValor",,,,.T.)
   
-  @ 036, 004 BUTTON "AC" SIZE 22, 22 ACTION (Resultado("L")) PIXEL OF oDlg 
-  @ 036, 029 BUTTON "+/-" SIZE 22, 22 ACTION (Resultado("T")) PIXEL OF oDlg 
-  @ 036, 054 BUTTON "%" SIZE 22, 22 ACTION (Resultado("%")) PIXEL OF oDlg 
-  @ 036, 079 BUTTON "/" SIZE 22, 22 ACTION (Resultado("/")) PIXEL OF oDlg 
+  oDivisao:=TButton():New( 038, 006, "AC",oDlg,{||Resultado("L")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cFuncoesCSS)
+  oDivisao:=TButton():New( 038, 033, "+/-",oDlg,{||Resultado("T")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cFuncoesCSS)
+  oDivisao:=TButton():New( 038, 060, "%",oDlg,{||Resultado("%")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cFuncoesCSS)
+  oDivisao:=TButton():New( 038, 087, "/",oDlg,{||Resultado("/")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cOpcoesCSS)
   
-  @ 061, 004 BUTTON "7" SIZE 22, 22 ACTION (Resultado("7")) PIXEL OF oDlg 
-  @ 061, 029 BUTTON "8" SIZE 22, 22 ACTION (Resultado("8")) PIXEL OF oDlg 
-  @ 061, 054 BUTTON "9" SIZE 22, 22 ACTION (Resultado("9")) PIXEL OF oDlg 
-  @ 061, 079 BUTTON "X" SIZE 22, 22 ACTION (Resultado("*")) PIXEL OF oDlg 
+  oDivisao:=TButton():New( 065, 006, "7",oDlg,{||Resultado("7")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oDivisao:=TButton():New( 065, 033, "8",oDlg,{||Resultado("8")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oDivisao:=TButton():New( 065, 060, "9",oDlg,{||Resultado("9")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oMult:=TButton():New( 065, 087, "X",oDlg,{||Resultado("*")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oMult:SetCss(cOpcoesCSS)
   
-  @ 087, 004 BUTTON "4" SIZE 22, 22 ACTION (Resultado("4")) PIXEL OF oDlg 
-  @ 087, 029 BUTTON "5" SIZE 22, 22 ACTION (Resultado("5")) PIXEL OF oDlg 
-  @ 087, 054 BUTTON "6" SIZE 22, 22 ACTION (Resultado("6")) PIXEL OF oDlg 
-  @ 087, 079 BUTTON "-" SIZE 22, 22 ACTION (Resultado("-")) PIXEL OF oDlg 
+  oDivisao:=TButton():New( 092, 006, "4",oDlg,{||Resultado("4")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oDivisao:=TButton():New( 092, 033, "5",oDlg,{||Resultado("5")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oDivisao:=TButton():New( 092, 060, "6",oDlg,{||Resultado("6")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oSub:=TButton():New( 092, 087, "-",oDlg,{||Resultado("-")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oSub:SetCss(cOpcoesCSS)
   
-  @ 112, 004 BUTTON "1" SIZE 22, 22 ACTION (Resultado("1")) PIXEL OF oDlg 
-  @ 112, 029 BUTTON "2" SIZE 22, 22 ACTION (Resultado("2")) PIXEL OF oDlg 
-  @ 112, 054 BUTTON "3" SIZE 22, 22 ACTION (Resultado("3")) PIXEL OF oDlg 
-  @ 112, 079 BUTTON "+" SIZE 22, 22 ACTION (Resultado("+")) PIXEL OF oDlg 
+  oDivisao:=TButton():New( 120, 006, "1",oDlg,{||Resultado("1")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oDivisao:=TButton():New( 120, 033, "2",oDlg,{||Resultado("2")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oDivisao:=TButton():New( 120, 060, "3",oDlg,{||Resultado("3")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oSoma:=TButton():New( 120, 087, "+",oDlg,{||Resultado("+")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oSoma:SetCss(cOpcoesCSS)
 
-  
-  @ 137, 004 BUTTON "0" SIZE 48, 22 ACTION (Resultado("0")) PIXEL OF oDlg 
-  @ 137, 054 BUTTON "," SIZE 22, 22 ACTION (Resultado(",")) PIXEL OF oDlg 
-  @ 137, 079 BUTTON "=" SIZE 22, 22 ACTION (Resultado("=")) PIXEL OF oDlg 
+  oDivisao:=TButton():New( 147, 006, "0",oDlg,{||Resultado("0")}, 48,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oDivisao:=TButton():New( 147, 060, ",",oDlg,{||Resultado(",")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oDivisao:SetCss(cNumeroCSS)
+  oSoma:=TButton():New( 147, 087, "=",oDlg,{||Resultado("=")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oSoma:SetCss(cOpcoesCSS)
 
-  ACTIVATE MSDIALOG  oDlg CENTERED
+  oDlg:Activate(, , , .T., , ,)
 
 Return 
 
@@ -64,6 +126,11 @@ Static Function Resultado(cOpcao)
     case ASC(cOpcao) == 37
       nValor/= 100
     case ASC(cOpcao) >=48 .and. ASC(cOpcao) <=57
+      if(nResult==1)
+        nValor:= 0
+        nResult:=0
+      endif
+
       cAux := cValToChar(nValor)
       if(nVigula==1)
         cAux+="."
@@ -86,7 +153,6 @@ Static Function Resultado(cOpcao)
         nVigula := 1
       endif
     case (ASC(cOpcao) == 42 .or. ASC(cOpcao) == 43 .or. ASC(cOpcao) == 45 .or. ASC(cOpcao) == 47)
-      Alert(cOperacao)
       if len(cOperacao)>0
         if(SubStr(cOperacao,len(cOperacao),1)<>cOpcao .and. !ISDIGIT(SubStr(cOperacao,len(cOperacao),1)) )
           cOperacao:= left(cOperacao,len(cOperacao)-1)+cOpcao
@@ -98,11 +164,11 @@ Static Function Resultado(cOpcao)
         cOperacao := cValToChar(nValor)+cOpcao
         nValor := 0
       endif
-      Alert(cOperacao)
     case ASC(cOpcao) == 61
       nValor :=  &(cOperacao)
       cOperacao   := ''
       nVigula     := 0
+      nResult     := 1
     otherwise
   endcase
 return

@@ -13,10 +13,8 @@
 
 User Function Ex14List04()
   Local oDlg
-  Local oOpcao
   Local cTituloDlg    := 'Pesquisa de pedido venda'
-  Local cResList      := '01'
-  Local aProduto      := BuscarProdutos()
+  Local cCodigo
   Private cDescricao  := ''
   Private cValor      := ''
 
@@ -26,9 +24,8 @@ User Function Ex14List04()
   DEFINE MSDIALOG oDlg TITLE cTituloDlg FROM 000, 000 to 190, 180 PIXEL
 
   @ 14, 10 SAY "Selecione um Produto: " SIZE 70, 07 OF oDlg PIXEL
-  oOpcao  := TComboBox():New(022, 010, {|u| Iif(PCount() > 0 , cResList := SubStr(u,len(u)-6,7), cResList)}, aProduto, 70, 11, oDlg, , /*bChange*/, /*bValid*/, /*nClrText*/, /*nClrBack*/, .T.,)
-
-  @ 45,010 BUTTON "Pesquisar" SIZE 30, 15 ACTION (Resultado(alltrim(cResList))) PIXEL OF oDlg 
+  @ 22, 10 MSGET cCodigo F3 "SB1" SIZE 70, 11 OF oDlg PIXEL HASBUTTON
+  @ 45,010 BUTTON "Pesquisar" SIZE 30, 15 ACTION (Resultado(cCodigo)) PIXEL OF oDlg 
   @ 45,050 BUTTON "Sair" SIZE 30, 15 ACTION (oDlg:End()) PIXEL OF oDlg 
 
   ACTIVATE MSDIALOG  oDlg CENTERED
@@ -65,33 +62,3 @@ Static Function Resultado(cCodigo)
   &(cAlias)->(DbCloseArea())
   RestArea(aArea)
 return
-
-
-Static Function BuscarProdutos()
-  Local aArea       := GetArea()
-  Local cAlias      := GetNextAlias()
-  local cQuery      := ''
-  local aProdutos   := {}
-  Local cCodigo
-  Local cDescricao
-
-
-  PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'COM'
-
-  cQuery := "Select B1_COD, B1_DESC"+CRLF+; 
-            "from "+RetSqlName('SB1')+CRLF+; 
-            "order by B1_DESC desc"
-
-  TCQUERY cQuery ALIAS &(cAlias) NEW
-
-  while &(cAlias)->(!EOF())
-    cCodigo:= &(cAlias)->(B1_COD)
-    cDescricao:= &(cAlias)->(B1_DESC)
-    aadd(aProdutos,Alltrim(cDescricao)+" - "+alltrim(cCodigo))
-    &(cAlias)->(DbSkip())
-  enddo
-
-  &(cAlias)->(DbCloseArea())
-  RestArea(aArea)
-Return aProdutos
-

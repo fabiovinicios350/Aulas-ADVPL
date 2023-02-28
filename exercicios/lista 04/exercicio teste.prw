@@ -12,8 +12,8 @@
 
 
 User Function Ex12List04()
-  Local dDataInicio   := CTOD("DD/MM/AAAA")
-  Local dDataFim      := CTOD("DD/MM/AAAA")
+  Local dDataInicio   := space(15)
+  Local dDataFim      := space(15)
   Local oDlg
   Local cTituloDlg    := 'Pesquisa de pedido de compra'
 
@@ -23,10 +23,10 @@ User Function Ex12List04()
   DEFINE MSDIALOG oDlg TITLE cTituloDlg FROM 000, 000 to 210, 180 PIXEL
 
   @ 14, 10 SAY "Digite a data inicio: " SIZE 70, 07 OF oDlg PIXEL
-  @ 22, 10 MSGET dDataInicio SIZE 70, 11 OF oDlg PIXEL PICTURE '@D 99/99/9999'
+  @ 22, 10 MSGET dDataInicio SIZE 70, 11 OF oDlg PIXEL PICTURE '@E 99/99/9999'
 
   @ 45, 10 SAY "Digite a data fim: " SIZE 70, 07 OF oDlg PIXEL
-  @ 53, 10 MSGET dDataFim SIZE 70, 11 OF oDlg PIXEL PICTURE '@D 99/99/9999'
+  @ 53, 10 MSGET dDataFim SIZE 70, 11 OF oDlg PIXEL PICTURE '@E 99/99/9999'
 
   @ 075,010 BUTTON "Cadastrar" SIZE 30, 11 ACTION (Resultado(dDataInicio,dDataFim)) PIXEL OF oDlg 
   @ 075,050 BUTTON "Sair" SIZE 30, 11 ACTION (oDlg:End()) PIXEL OF oDlg 
@@ -45,8 +45,8 @@ Static Function Resultado(dDataInicio,dDataFim)
 
   cResultado := 'RESULTADO'
 
-  dDataInicio := DTOS(alltrim(dDataInicio))
-  dDataFim := DTOS(alltrim(dDataFim))
+  dDataInicio := DTOS(CTOD(alltrim(dDataInicio)))
+  dDataFim := DTOS(CTOD(alltrim(dDataFim)))
 
     PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SC5' MODULO 'COM'
 
