@@ -30,19 +30,16 @@ user function CepBuscaEndereco()
       cRetorno:= oRest:GetResult()
       cErro := jRes:fromJson(cRetorno)
       
-      alert(jRes)
-
       if (!jRes["erro"])
-        M->A1_END := FwNoAccent(UPPER(jRes["logradouro"]))
-        M->A1_BAIRRO := FwNoAccent(UPPER(jRes["bairro"]))
-        M->A1_COMPLEM:= FwNoAccent(UPPER(jRes["complemento"]))
+        M->A1_END := UPPER(DECODEUTF8(jRes["logradouro"]))
+        M->A1_BAIRRO := UPPER(DECODEUTF8(jRes["bairro"]))
+        M->A1_COMPLEM:= UPPER(DECODEUTF8(jRes["complemento"]))
         M->A1_EST := UPPER(jRes["uf"])
         M->A1_IBGE := jRes["ibge"]
-        M->A1_MUN := FwNoAccent(UPPER(jRes["localidade"]))
+        M->A1_MUN := UPPER(DECODEUTF8(jRes["localidade"]))
         M->A1_COD_MUN := PesquisarMunicipio(M->A1_MUN)
         M->A1_DDD := jRes["ddd"]
         lRetorno := .T.
-        FwAlertSucess("<h1>All Right Passou aqui!</h1>"+CRLF+CRLF,"Cep Valido!")
       else
         FwAlertError("Cep nao <b>encontrado!</b>"+CRLF+"por favor tente novamente.","Cep Inválido")
       endif

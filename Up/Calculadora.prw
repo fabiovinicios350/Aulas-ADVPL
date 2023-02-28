@@ -1,18 +1,20 @@
 //Biblioteca
 #INCLUDE 'TOTVS.CH'
 
-//Constantes
-#DEFINE cTITULO 'Algoritimo para simular uma calculadora'
-
 /*/
   @author Fabio
   @since 24/02/2023
 /*/
 
-
+//Função para exibir a calculadora
 User Function FabioCalculadora()
+
+  //Constantes
+  #DEFINE cTITULO 'Algoritimo para simular uma calculadora'
+  #DEFINE cTITULODLG 'Calculadora' 
   #DEFINE COLOR_BLACK RGB(0,0,0)
 
+  //variaveis de estilização
   Local cInputCSS := ""+;
   "QLineEdit {"+;
     "background: rgb(0, 0, 0);"+;
@@ -43,6 +45,7 @@ User Function FabioCalculadora()
   "QPushButton:pressed {"+;
     "background-color:  rgb(215, 215, 215);"+; 
   "}"
+
   Local cNumeroCSS := ""+;
   "QPushButton {"+;
     "background: rgb(58, 58, 58);"+;
@@ -51,19 +54,20 @@ User Function FabioCalculadora()
     "background-color:  rgb(155, 155, 155);"+; 
   "}"
 
-  Local cTituloDlg   := 'Calculadora' 
+  //Variaveis 
   Local oDlg
-  Private nValor      := 0
-  Private cOperacao   := ''
-  Private nResult     := 0
-  Private nVigula     := 0
-  Private nOpPendente := .F.
-
+  Private nValor          := 0
+  Private cOperacao       := ''
+  Private cOperacaoAux    := ''
+  Private nResult         := 0
+  Private nVigula         := 0
+  Private nOpPendente     := .F.
 
   FwAlertInfo(cTITULO,"Bem vindo!")
-
   
-  oDlg := MSDIALOG():New(0, 0, 344, 228, cTituloDlg, , , , , , COLOR_BLACK, , , .T.)
+
+  //Criacao de janela de Dialog
+  oDlg := MSDIALOG():New(0, 0, 344, 228, cTITULODLG, , , , , , COLOR_BLACK, , , .T.)
   oDlg:SetCss(cInputCSS)
 
   oNumero := TGet():New( 005, 006, { | u | If( PCount() == 0, nValor, nValor := u ) },oDlg, ;
@@ -130,7 +134,6 @@ Static Function Resultado(cOpcao)
         nValor:= 0
         nResult:=0
       endif
-
       cAux := cValToChar(nValor)
       if(nVigula==1)
         cAux+="."

@@ -14,10 +14,11 @@
 User Function Ex14List04()
   Local oDlg
   Local cTituloDlg    := 'Pesquisa de pedido venda'
-  Local cCodigo
+  Local cCodigo       :=space(25)
   Private cDescricao  := ''
   Private cValor      := ''
 
+  PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'COM'
 
   FwAlertInfo(cTITULO,"Bem vindo!")
 
