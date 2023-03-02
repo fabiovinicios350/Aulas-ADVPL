@@ -17,9 +17,7 @@ User Function L05Ex17()
 
   FwAlertInfo(cTITULO,"Bem vindo!")
 
-  DEFINE MSDIALOG oDlg TITLE cTituloDlg FROM 000, 000 to 250, 180 PIXEL
-
-  
+  DEFINE MSDIALOG oDlg TITLE cTituloDlg FROM 000, 000 to 280, 180 PIXEL
 
 
   @ 14, 10 BUTTON "Carregar o Array" SIZE 70, 10 ACTION (PopulaArray()) PIXEL OF oDlg 
@@ -30,7 +28,7 @@ User Function L05Ex17()
   @ 74, 10 BUTTON "Informar a media" SIZE 70, 10 ACTION (MediaArray()) PIXEL OF oDlg 
   @ 86, 10 BUTTON "Informar o maior/menor" SIZE 70, 10 ACTION (MaiMenArray()) PIXEL OF oDlg 
   @ 98, 10 BUTTON "Embaralhar" SIZE 70, 10 ACTION (EmbaralhaArrauy()) PIXEL OF oDlg 
-  @ 110, 10 BUTTON "Informar os repetidos" SIZE 70, 10 ACTION (Resultado()) PIXEL OF oDlg 
+  @ 110, 10 BUTTON "Informar os repetidos" SIZE 70, 10 ACTION (VerificaArrauy()) PIXEL OF oDlg 
   @ 122, 10 BUTTON "Limpar Array" SIZE 70, 10 ACTION (LimpaArray()) PIXEL OF oDlg 
 
   ACTIVATE MSDIALOG  oDlg CENTERED
@@ -87,6 +85,7 @@ Static Function OdenarArrauy()
     endif
   else
     ASORT(aNumero)
+    FwAlertSuccess("Array ordenado com sucesso","Sucesso")
   endif
 Return
 
@@ -170,11 +169,59 @@ Static Function EmbaralhaArrauy()
     for nI:=1 to len(aNumero)
       nNumero:= RANDOMIZE(1, len(aNumero))
       if(aNumero[nNumero]<>nil)
-        AADD( aAux, nNumero )
+        AADD( aAux, aNumero[nNumero] )
         Adel(aNumero,nNumero)
+      else
+        nI--
       endif
     next nI
+    aNumero:= ACLONE( aAux )
     FwAlertSuccess("Array embaralhado com sucesso","Sucesso!")
+  endif
+Return
+
+Static Function VerificaArrauy()
+  Local aRepete   := {}
+  Local lRepete   := .F. 
+  Local cPosicao  := ''
+  Local cMensagem := ''
+  Local nCount
+  Local nI
+  Local nJ
+
+  if(len(aNumero)<1)
+    if(MsgyesNo("Array esta vazio, Deseja popular o array","Array vazio"))
+      PopulaArray()
+    endif
+  else
+    for nI:= 1 to len(aNumero)
+      cPosicao := ''
+      nCount := 0
+
+      For nJ:=1 to len(aRepete)
+        if(aNumero[nI]==aRepete[nJ][1])
+          lRepete:= .T.
+        endif
+      next nJ
+
+      if(!lRepete)
+        for nJ:=1 to len(aNumero)
+          if(aNumero[nI]==aNumero[nJ])
+            cPosicao+= ' '+cValToChar(nJ)+','
+            nCount++
+          endif
+        next nJ
+        if nCount>1
+          aadd(aRepete,{aNumero[nI],cPosicao})
+          cMensagem += ' Numero '+cValToChar(aNumero[nI])+' nas Posições: '+cPosicao+CRLF
+        endif
+      endif
+    next nI
+    if(len(aRepete)==0)
+      FwAlertError("Nao foi encontrado nenhuma numero repetido!","Falha")
+    else
+      FwAlertSuccess(cMensagem,'Resultado!')
+    endif
   endif
 Return
 
@@ -187,15 +234,3 @@ Static Function LimpaArray()
     FwAlertError("Array esta vazio","Falha")
   endif
 Return
-
-
-// Static Function OdenarArrauy()
-
-//   if(len(aNumero)<1)
-//     if(MsgyesNo("Array esta vazio, Deseja popular o array","Array vazio"))
-//       PopulaArray()
-//     endif
-//   else
-
-//   endif
-// Return
