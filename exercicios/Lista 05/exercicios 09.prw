@@ -1,13 +1,13 @@
 #INCLUDE 'TOTVS.CH'
 
-#DEFINE cTITULO 'Algoritimos para polular um array de forma inversa'
+#DEFINE cTITULO 'Algoritimos para criar um array apartir de outro array'
 
 /*/
   @author Fabio
   @since 01/02/2023
 /*/
 
-User Function L5Ex07()
+User Function L5Ex09()
   Local aA            := {}
   Local aB            := {}
   Local cMensagemA    := 'Array A: { '
@@ -18,20 +18,16 @@ User Function L5Ex07()
 
   FwAlertInfo(cTITULO,"Bem vindo!")
 
-  for nI:= 1 to 15
+  for nI:= 1 to 8
     nNumero:=randomize(1,100)
     aadd(aA,nNumero)
     cMensagemA +=cValToChar(nNumero)+','
-  next nI
-
-  for nI:= len(aA) to 1 step -1
-    aadd(aB,aA[nI])
-    cMensagemB +=cValToChar(aA[nI])+','
+    aadd(aB,(nNumero*3))
+    cMensagemB +=cValToChar(aB[nI])+','
   next nI
 
   cMensagemA += '}'
   cMensagemB += '}'
-
 
   FwAlertSuccess(cMensagemA+CRLF+cMensagemB,"Resultado")
 Return 

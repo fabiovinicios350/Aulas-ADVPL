@@ -402,7 +402,31 @@
 		},
 		{
 			"label": "U_L5Ex06"
+		},
+		{
+			"label": "U_L5Ex07"
+		},
+		{
+			"label": "U_L5Ex08"
+		},
+		{
+			"label": "U_LL5Ex09"
+		},
+		{
+			"label": "U_L5Ex09"
+		},
+		{
+			"label": "U_L5Ex10"
+		},
+		{
+			"label": "U_L5Ex11"
+		},
+		{
+			"label": "U_L5Ex12"
+		},
+		{
+			"label": "U_L5Ex13"
 		}
 	],
-	"lastProgramExecuted": "U_L5Ex06"
+	"lastProgramExecuted": "U_L5Ex13"
 }

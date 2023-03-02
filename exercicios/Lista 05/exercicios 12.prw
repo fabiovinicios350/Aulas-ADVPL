@@ -1,32 +1,29 @@
 #INCLUDE 'TOTVS.CH'
 
-#DEFINE cTITULO 'Algoritimos para polular um array de forma inversa'
+#DEFINE cTITULO 'Algoritimos para juntar dois array'
 
 /*/
   @author Fabio
   @since 01/02/2023
 /*/
 
-User Function L5Ex07()
+User Function L5Ex12()
   Local aA            := {}
   Local aB            := {}
   Local cMensagemA    := 'Array A: { '
   Local cMensagemB    := 'Array B: { '
-  Local nI
   Local nNumero
+  Local nI
 
 
   FwAlertInfo(cTITULO,"Bem vindo!")
 
-  for nI:= 1 to 15
-    nNumero:=randomize(1,100)
+  for nI:= 1 to 5
+    nNumero:=randomize(-20,20)
     aadd(aA,nNumero)
+    aadd(aB,nNumero*(-1))
     cMensagemA +=cValToChar(nNumero)+','
-  next nI
-
-  for nI:= len(aA) to 1 step -1
-    aadd(aB,aA[nI])
-    cMensagemB +=cValToChar(aA[nI])+','
+    cMensagemB +=cValToChar(nNumero*(-1))+','
   next nI
 
   cMensagemA += '}'
