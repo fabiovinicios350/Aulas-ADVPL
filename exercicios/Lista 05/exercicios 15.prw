@@ -7,37 +7,37 @@
   @since 01/02/2023
 /*/
 
-User Function L5Ex08()
+User Function L5Ex15()
   Local aA            := {}
   Local cMensagemA    := 'Array A: { '
   Local cMensagemB    := 'Array B: { '
-  Local nJ
-  Local nI              
+  Local nPmenor 
   Local nAuxTroca
+  Local nI
+  Local nJ
   Local nNumero
 
 
   FwAlertInfo(cTITULO,"Bem vindo!")
 
-  for nI:= 1 to 8
+  for nI:= 1 to 12
     nNumero:=randomize(1,100)
     aadd(aA,nNumero)
     cMensagemA +=cValToChar(nNumero)+','
   next nI
-
   cMensagemA+= '}'
 
-  nJ := len(aA)
-  for nI:=1 to len(aA)
-    if(nI>=nJ)
-      cMensagemB+=cValToChar(aA[nI] )+','
-    else
-      nAuxTroca:= aA[nJ]
-      aA[nJ] := aA[nI]
-      aA[nI] := nAuxTroca
-      cMensagemB+=cValToChar(aA[nI] )+','
-    endif
-    nJ--
+  for nI:= 1 to len(aA)
+    nPmenor:= nI
+    for nJ:=nI to len(aA)
+      if(aA[nPmenor]>aA[nJ])
+        nPmenor:= nj
+      endif
+    next nJ
+    nAuxTroca:= aA[nPmenor]
+    aA[nPmenor]:= aA[nI]
+    aA[nI]:=nAuxTroca
+    cMensagemB +=cValToChar(aA[nI])+','
   next nI
   cMensagemB+= '}'
 
