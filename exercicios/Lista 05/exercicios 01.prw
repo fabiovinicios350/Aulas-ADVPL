@@ -7,7 +7,7 @@
   @since 28/02/2023
 /*/
 
-User Function lista05Ex01()
+User Function List5Ex01()
   Local cTituloDlg    := 'Dia da semana'
   Local oDlg
   Local nValor        := 0

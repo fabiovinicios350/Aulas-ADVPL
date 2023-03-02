@@ -375,7 +375,34 @@
 		},
 		{
 			"label": "U_testeFabio"
+		},
+		{
+			"label": "U_JogoLabirinto"
+		},
+		{
+			"label": "U_lista05Ex01"
+		},
+		{
+			"label": "U_List05Ex02"
+		},
+		{
+			"label": "U_L5Ex03"
+		},
+		{
+			"label": "U_L5Ex04"
+		},
+		{
+			"label": "U_L5Ex05"
+		},
+		{
+			"args": [
+				"[nI]"
+			],
+			"label": "U_LaB"
+		},
+		{
+			"label": "U_L5Ex06"
 		}
 	],
-	"lastProgramExecuted": "U_testeFabio"
+	"lastProgramExecuted": "U_L5Ex06"
 }
