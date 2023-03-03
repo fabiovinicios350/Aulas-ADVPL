@@ -16,7 +16,7 @@ User Function L05Ex16()
   Local nNota02       := 0
   Local nNota03       := 0
   Local cTituloDlg    := 'Media Alunos' 
-  Private aAluno      :={{"Fabio",10,5,8,10},{"Denis",10,5,8,10},{"Dalcie",10,5,8,10},{"Paloma",10,5,8,10},{"Cida",10,5,8,10},{"Teste",10,5,8,10}}
+  Private aAluno      :={/*/{"Fabio",10,5,8,10},{"Denis",10,5,8,10},{"Dalcie",10,5,8,10},{"Paloma",10,5,8,10},{"Cida",10,5,8,10},{"Teste",10,5,8,10}/*/}
   
   Private nMedia      := 0
   Private oDlg
