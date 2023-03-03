@@ -19,7 +19,6 @@ User Function L05Ex17()
 
   DEFINE MSDIALOG oDlg TITLE cTituloDlg FROM 000, 000 to 280, 180 PIXEL
 
-
   @ 14, 10 BUTTON "Carregar o Array" SIZE 70, 10 ACTION (PopulaArray()) PIXEL OF oDlg 
   @ 26, 10 BUTTON "Exibir Array" SIZE 70, 10 ACTION (ExibiArray()) PIXEL OF oDlg 
   @ 38, 10 BUTTON "Ordenar Array" SIZE 70, 10 ACTION (OdenarArrauy()) PIXEL OF oDlg 
