@@ -74,7 +74,12 @@ User Function FabioCalculadora()
   130, 25, "@E 999,999,999,999,999.999",,,,,.F.,,.T.,,.F.,,.F.,.F.,,.F.,.F. ,,"nValor",,,,.T.)
   
   oDivisao:=TButton():New( 038, 006, "AC",oDlg,{||Resultado("L")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
+
+
   oDivisao:SetCss(cFuncoesCSS)
+
+
+
   oDivisao:=TButton():New( 038, 033, "+/-",oDlg,{||Resultado("T")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
   oDivisao:SetCss(cFuncoesCSS)
   oDivisao:=TButton():New( 038, 060, "%",oDlg,{||Resultado("%")}, 22,22,,,.F.,.T.,.F.,,.F.,,,.F. )
@@ -181,3 +186,7 @@ Static Function Limpa()
   cOperacao   := ''
   nVigula     := 0
 Return 
+
+
+
+

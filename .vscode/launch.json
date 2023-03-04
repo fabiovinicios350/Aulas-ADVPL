@@ -435,7 +435,16 @@
 		},
 		{
 			"label": "U_L05Ex17"
+		},
+		{
+			"label": "U_zTeste"
+		},
+		{
+			"label": "U_Modelo"
+		},
+		{
+			"label": "U_HomePdv"
 		}
 	],
-	"lastProgramExecuted": "U_L5Ex04"
+	"lastProgramExecuted": "U_HomePdv"
 }
