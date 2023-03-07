@@ -444,7 +444,13 @@
 		},
 		{
 			"label": "U_HomePdv"
+		},
+		{
+			"label": "SIGAFAT"
+		},
+		{
+			"label": "SIGAFIS"
 		}
 	],
-	"lastProgramExecuted": "U_HomePdv"
+	"lastProgramExecuted": "SIGAFIS"
 }
