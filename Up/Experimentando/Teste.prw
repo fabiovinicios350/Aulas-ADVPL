@@ -1,40 +1,47 @@
-//Biblioteca
 #INCLUDE 'TOTVS.CH'
-
-//Constantes
-#DEFINE cTITULO 'Algoritimos para definir a Soma, Diferença, produto e quociente entre dois numeros'
+#INCLUDE 'TBICONN.CH'
+#INCLUDE 'TOPCONN.CH'
 
 /*/
   @author Fabio
-  @since 24/02/2023
+  @since 03/03/2023
 /*/
 
+//Função para a criação dos componentes da Home
+User Function TesteFabio10()
 
-User Function Ex01List04()
-  Local cNumero1    := Space(333)
-  Local cNumero2    := Space(333)
-  Local cTituloDlg  := 'Soma, Diferença, produto e quociente' 
-  Local oDlg
-  Private cSoma
-  Private cDiferente
-  Private cproduto
-  Private cQuociente
-  Private cResultado
+  //Constantes
+  #DEFINE cTITULO 'Algoritimo para teste'
+  #DEFINE cTITULODLG 'Algoritimo para teste' 
+  //Cor
+  #DEFINE COR_FUNDO_PADRAO RGB(216,216,216)
+  #DEFINE CLR_TEXTO RGB(136,136,136)
 
-  FwAlertInfo(cTITULO,"Bem vindo!")
+  //Variaveis Global
+  Local cTextHtml := " <p><img src='https://logodownload.org/wp-content/uploads/2019/12/totvs-logo.png' width='117' height='38'/></p> "
+  Private oDlg
+  Private cUrlProduto   := "https://logodownload.org/wp-content/uploads/2019/12/totvs-logo.png"
+  Private cCodigoEAN    := "48723198417242987448217"
+  
 
-  DEFINE MSDIALOG oDlg TITLE cTituloDlg FROM 000, 000 to 300, 180 PIXEL
 
-  InputDlg("Digite o primeiro Numero: ",@cNumero1,14,10,70,oDlg)
-  InputDlg("Digite o Segundo Numero: ",@cNumero2,45,10,70,oDlg)
-  @ 075,010 BUTTON "Calcular" SIZE 30, 15 ACTION (Resultado(cNumero1,cNumero2)) PIXEL OF oDlg 
-  @ 075,050 BUTTON "Sair" SIZE 30, 15 ACTION (oDlg:End()) PIXEL OF oDlg 
-  @ 100, 30 SAY cResultado SIZE 30, 07 OF oDlg PIXEL
-  @ 110, 010 SAY cSoma SIZE 30, 07 OF oDlg PIXEL
-  @ 120, 010 SAY cDiferente SIZE 30, 07 OF oDlg PIXEL
-  @ 130, 010 SAY cproduto SIZE 30, 07 OF oDlg PIXEL
-  @ 140, 010 SAY cQuociente SIZE 90, 07 OF oDlg PIXEL
+  PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'COM'
 
-  ACTIVATE MSDIALOG  oDlg CENTERED
+  oDlg := TDialog():New(0,0,644,1274,cTITULODLG,,,,,CLR_TEXTO,COR_FUNDO_PADRAO,,,.T.)
 
+  oSay := TSay():New(01,01,{||cTextHtml},oDlg,,,,,,.T.,,,400,300,,,,,,.T.)
+
+  oFotoProduto := TBitmap():New(150,49, 80, 80, NIL, cUrlProduto, .T., oDlg,, NIL, .F., .F., NIL, NIL, .F., NIL, .T., NIL, .F.)
+  oFotoProduto:lStretch:= .T.
+
+  oFinalizar := TButton():New( 235, 177, "Alterar",oDlg,{|| Teste()}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
+
+  oDlg:Activate(,,,,,,)
 Return 
+
+
+static Function Teste()
+  cUrlProduto:= "C:\TOTVS12\PROTHEUS\IMG\IMG-PRODUTOS\APPLE WATCH SERIES 4 PRETO.PNG                       "
+  cCodigoEAN:= "Deu certo"
+  oFotoProduto:Load(,cUrlProduto)
+Return
