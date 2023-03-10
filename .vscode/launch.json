@@ -453,7 +453,10 @@
 		},
 		{
 			"label": "U_TesteFabio10"
+		},
+		{
+			"label": "MA120BUT"
 		}
 	],
-	"lastProgramExecuted": "U_HomePdv"
+	"lastProgramExecuted": "SIGACOM"
 }
