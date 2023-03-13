@@ -462,7 +462,16 @@
 		},
 		{
 			"label": "U_SenhaLibera"
+		},
+		{
+			"label": "Ex18List04"
+		},
+		{
+			"label": "U_Ex18List04"
+		},
+		{
+			"label": "U_Ex20List04"
 		}
 	],
-	"lastProgramExecuted": "U_HomePdv"
+	"lastProgramExecuted": "U_Ex20List04"
 }
