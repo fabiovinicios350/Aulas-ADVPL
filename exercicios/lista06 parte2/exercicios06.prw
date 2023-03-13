@@ -21,7 +21,7 @@ User Function CUSTOMERVENDOR()
 
     if cIdPonto=="MODELPOS"
       nOper:= oObj:nOperation
-      if nOper==5//Exercicio 09
+      if nOper==5 //Exercicio 09
         if(ExistBlock('ValidaExclusao'))
             xRet:=ExecBlock('ValidaExclusao', .F., .F.)
         else

@@ -456,7 +456,13 @@
 		},
 		{
 			"label": "MA120BUT"
+		},
+		{
+			"label": "SenhaLibera"
+		},
+		{
+			"label": "U_SenhaLibera"
 		}
 	],
-	"lastProgramExecuted": "SIGACOM"
+	"lastProgramExecuted": "U_HomePdv"
 }
