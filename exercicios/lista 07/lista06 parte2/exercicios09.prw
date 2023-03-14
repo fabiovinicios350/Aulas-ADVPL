@@ -1,5 +1,7 @@
+//Biblioteca
 #INCLUDE 'TOTVS.CH'
 
-User Function ValidaExclusao()
+//Função para pedir a confirmação da exclusão para o usuario  
+User Function ConfirmaExclusao()
   Local lRetorno := MsgyesNo("Deseja realmente excluir esse fornecedor ","Confirma")	
 Return lRetorno
