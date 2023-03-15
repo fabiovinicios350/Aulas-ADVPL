@@ -7,7 +7,11 @@ User Function MT010ALT()
   Local aArea     := GetArea()
   Local aAreaSB1  := SB1->(GetArea())
 
-  AlteraDescr()
+  if ExistBlock("AltDescr")
+    ExecBlock("AltDescr")//Altera descrição
+  else
+    FwAlertError("Erro ao chamar uma função de usuaruo","Falha na função")	
+  endif
 
   RestArea(aArea)
   RestArea(aAreaSB1) 
@@ -19,7 +23,12 @@ User Function MT010INC()
   Local aArea     := GetArea()
   Local aAreaSB1  := SB1->(GetArea())
 
-  AlteraDescr()
+  if ExistBlock("AltDescr")
+    ExecBlock("AltDescr")//Altera descrição
+  else
+    FwAlertError("Erro ao chamar uma função de usuaruo","Falha na função")	
+  endif
+
   if ExistBlock("BlqCadastro")
     ExecBlock("BlqCadastro")//Bloquear cadastro 
   else
@@ -31,7 +40,7 @@ User Function MT010INC()
 Return .T.
 
 //Função para alterar a descrição do produto 
-Static Function AlteraDescr()
+user Function AltDescr()
   Local cTexto := SUBSTR( M->B1_DESC, 1, 14)
 
   if(cTexto<>"CAD. Manual - ")

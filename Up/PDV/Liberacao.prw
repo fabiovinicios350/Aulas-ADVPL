@@ -6,6 +6,7 @@ User Function SenhaLibera()
   //Constantes
   #DEFINE cTITULO 'Algoritimos para solicitra a senha de liberação'
   #DEFINE cTITULODLG 'Liberação' 
+
   //Cor
   #DEFINE COR_FUNDO_PADRAO RGB(216,216,216)
   #DEFINE CLR_TEXTO RGB(136,136,136)
@@ -19,6 +20,7 @@ User Function SenhaLibera()
     "border-radius: 5px;"+; 
     "color: #A5A5A5;"+;
     "font: normal 14px Arial;"+;
+    "padding-left: 10px ;"+;
   "}"+;
   "QPushButton {"+;
     "background: #fff;"+;
