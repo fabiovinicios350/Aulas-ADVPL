@@ -474,7 +474,10 @@
 		},
 		{
 			"label": "U_AplicaDesc"
+		},
+		{
+			"label": "U_LoginPDV"
 		}
 	],
-	"lastProgramExecuted": "U_HomePdv"
+	"lastProgramExecuted": "U_LoginPDV"
 }

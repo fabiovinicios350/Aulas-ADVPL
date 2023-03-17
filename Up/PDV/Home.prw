@@ -3,21 +3,21 @@
 #INCLUDE 'TBICONN.CH'
 #INCLUDE 'TOPCONN.CH'
 
+//Constantes
+#DEFINE cTITULO 'Algoritimo para simular um PDV'
+#DEFINE cTITULODLG 'TOTVS PDV' 
+
+//Cor
+#DEFINE COR_FUNDO_PADRAO RGB(216,216,216)
+#DEFINE CLR_TEXTO RGB(136,136,136)
+
 /*/
   @author Fabio
   @since 03/03/2023
 /*/
 
-//Função para a criação dos componentes da Home
-User Function HomePdv()
-
-  //Constantes
-  #DEFINE cTITULO 'Algoritimo para simular um PDV'
-  #DEFINE cTITULODLG 'TOTVS PDV' 
-  
-  //Cor
-  #DEFINE COR_FUNDO_PADRAO RGB(216,216,216)
-  #DEFINE CLR_TEXTO RGB(136,136,136)
+//Função que simula um PDV
+User Function HomePdv(aVendedor,cLoja)
 
   //CSS
   Local cCssDlg :=;
@@ -100,11 +100,11 @@ User Function HomePdv()
   "}"
 
   //Variaveis Global
-  Private oDlg
-  Private cNomeVend       := 'Fabio Vinicios'
-  Private cCodVend        := 'v00001'
+  Private cCodVend        := aVendedor[1]
+  Private cNomeVend       := aVendedor[2]
   Private cNomeCliente    := space(50)
   Private cCodCli         := space(20)
+  Private oDlg
 
   //Variaveis Produto
   Private cCodigoEAN      := space(25)
@@ -128,17 +128,19 @@ User Function HomePdv()
   Private nSubTotal       := 0
   Private nDesconto       := 0
 
+  //Conexão com o banco de dados
   PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'COM'
 
+  //Janela do PDV
   oDlg := TDialog():New(0,0,644,1274,cTITULODLG,,,,,CLR_TEXTO,COR_FUNDO_PADRAO,,,.T.)
   oDlg:SetCss( cCssDlg )
   
-  //Logo
+  //Logo TOTVS
   oLogoTotvs := TBitmap():New(17,12, 152, 055,, "C:\Users\User\Desktop\ADVPL\teste-git\Up\PDV\img\logo-totvs.jpeg", .T., oDlg,,, .F., .F.,,, .F.,, .T.,, .F.)
   oLogoTotvs:lStretch:= .T.
   oLogo:= TGroup():New(07,07,82,169,,oDlg,,,.T.)
 
-  //Pesquisa
+  //Barra de pesquisa
   oIconeLupa := TBitmap():New(93.5,18.5, 12, 12,, "C:\Users\User\Desktop\ADVPL\teste-git\Up\PDV\img\iconeLupa.svg", .T., oDlg,{|| ProdConsPadrao()},, .F., .F.,,, .F.,, .T.,, .F.)
   oIconeLupa:lStretch:= .T.
   oGetPesquisa := TGet():New( 92,37,{|u| If( PCount() == 0, cCodigoEAN, cCodigoEAN:=u )},oDlg,125,15,,,0,,,.F.,,.T.,,.F.,,.F.,.F.,{||  BuscaProduto(cCodigoEAN,1)},.F.,.F.,,cCodigoEAN,,,,)
@@ -146,7 +148,7 @@ User Function HomePdv()
   oGetPesquisa:SetCss( cCssGetPesquisa )  
   oPesquisa:= TGroup():New(90,07,110,169,,oDlg,,,.T.)
    
-  //Produto
+  //Informações do produto
   oTituloProduto := TSay():New(130,49,{||"<h2>Produto</h2>"},oDlg,,,,,,.T.,,,80,15,,,,,,.T.,2,2)
   oFotoProduto := TBitmap():New(150,49, 80, 80,, cUrlProduto, .T., oDlg,,, .F., .F.,,, .F.,, .T.,, .F.)
   oFotoProduto:lStretch:= .T.
@@ -161,38 +163,38 @@ User Function HomePdv()
   oInfoValorVal := TSay():New(297,87,{|| "<h2>R$ "+StrTran(Str(nValProduto,,2),'.',',')+"</h2>"},oDlg,,,,,,.T.,,,75,13,,,,,,.T.,1,2)
   oProduto:= TGroup():New(117,7,314,169,,oDlg,,,.T.)
   
-  //Funções
+  //Botões para aplicar as funções
   oFinalizar := TButton():New( 235, 177, "Finalizar",oDlg,{||alert("Finalizar")}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
   oFinalizar:SetCss( cCssBTFinalizar )
   oDesconto := TButton():New( 235, 270, "Desconto",oDlg,{||DescontoAplicado()}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
   oDesconto:SetCss( cCssBTDesconto )
   oPesquisar := TButton():New( 235, 362, "Pesquisa",oDlg,{||alert("Pesquisa")}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
   oPesquisar:SetCss( cCssBTPesquisa )
-  oCancelarItem := TButton():New( 235, 455, "Cancelar Item",oDlg,{||alert("Cancelar Item")}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oCancelarItem := TButton():New( 235, 455, "Cancelar Item",oDlg,{||CancelItem()}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
   oCancelar := TButton():New( 235, 547, "Cancelar",oDlg,{||CancelarVenda()}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
   oCancelar:SetCss( cCssBTCancelar )
 
-  //Vendedor
+  //Informações do vendedor
   oIconeUsu := TBitmap():New(269.5,186.5, 12, 12,, "C:\Users\User\Desktop\ADVPL\teste-git\Up\PDV\img\iconeUsuario.svg", .T., oDlg,,, .F., .F.,,, .F.,, .T.,, .F.)
   oIconeUsu:lStretch:= .T.
   oGetVendedor := TGet():New( 267,206,{||cNomeVend},oDlg,190,15,,,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.T.,.F.,,cNomeVend)
   oVendedor:= TGroup():New(265,177,287,412,,oDlg,,,.T.)
 
-  //Cliente
+  //Informações do cliente
   oIconeLupaCli := TBitmap():New(299.5,186.5, 12, 12,, "C:\Users\User\Desktop\ADVPL\teste-git\Up\PDV\img\iconeLupa.svg", .T., oDlg,{|| CliConsPadrao()},, .F., .F.,,, .F.,, .T.,, .F.)
   oIconeLupaCli:lStretch:= .T.
   oGetPesquisaCli := TGet():New( 298,205,{||cNomeCliente},oDlg,190,15,,,0,,,.F.,,.T.,,.F.,,.F.,.F.,,.T.,.F.,,cNomeCliente)
   oGetPesquisaCli:cPlaceHold := 'Pesquisa Cliente...'
   oCliente:= TGroup():New(295,177,317,412,,oDlg,,,.T.)
 
-  //Resumo
+  //Resumo da venda
   oSubTotal:= TSay():New(270,423,{|| "<h4> SubTotal: R$ "+Strtran(Str(nSubTotal,,2),'.',',')+"</h4>"},oDlg,,,,,,.T.,,,102,12,,,,,,.T.)
   oDescontoTotal := TSay():New(270,525,{|| "<h4> Desconto: R$ "+Strtran(Str(nDesconto,,2),'.',',')+"</h4>"},oDlg,,,,,,.T.,,,102,12,,,,,,.T.,1,2)
   oTotal:= TSay():New(287,422,{|| "<h1>R$ "+Strtran(Str(nTotal,,2),'.',',')+"</h1>"},oDlg,,,,,,.T.,,,205,25,,,,,,.T.,2,2)
   oTotal:SetCss( cCssTotal )
   oResumo:= TGroup():New(265,418,317,633,,oDlg,,,.T.)
 
-  //Lista de Produtos
+  //Lista de produtos na venda
   oListaProduto:= TGroup():New(7,177,229,632,,oDlg,,,.T.)
   oInfoEstVal  := TGrid():New( oDlg, 12, 182, 445, 207)
   oInfoEstVal:AddColumn( 1, "Cod", 75, CONTROL_ALIGN_LEFT,.T.)
@@ -301,7 +303,6 @@ Static Function IncluiProduto()
 
   nTotal    += aListaProduto[nLinha][10]
   nSubTotal += aListaProduto[nLinha][8]
-  nDesconto += aListaProduto[nLinha][9]
 Return 
 
 //Refazer a lista de venda
@@ -312,8 +313,8 @@ Return
 Static Function CancelarVenda()
   if(MsgyesNo("Deseja realmente cancelar a venda?","Cancelar"))
     if(U_SenhaLibera())
-      cNomeCliente := nil
-      cCodCli  := nil
+      cNomeCliente := space(50)
+      cCodCli  := space(20)
       cCodigoEAN    := space(25)
       cCodProduto   := space(20)
       cDescrProduto := 'Descrição do produto'
@@ -342,16 +343,59 @@ Return
 
 //Aplicar Desconto
 Static Function DescontoAplicado()
-  Local nDescAprovado := U_AplicaDesc(nTotal)
+  Local nDescAprovado 
 
-
-  if(nDescAprovado==nil)
-    FwAlertError("Desconto não aplicado","Falha")
+  if(nSubTotal<>0)
+    nDescAprovado := U_AplicaDesc(nSubTotal,nDesconto)
+    if(nDescAprovado==nil)
+      FwAlertError("Desconto não aplicado","Falha")
+    else
+      nDesconto := nDescAprovado
+      nTotal := nSubTotal-nDesconto
+      FwAlertSuccess("Desconto aplicado com sucesso!","Sucesso")
+    endif
   else
-    nDesconto := nDescAprovado
-    nTotal := nSubTotal-nDesconto
-    FwAlertSuccess("Desconto aplicado com sucesso!","Sucesso")
+    FwAlertInfo("Não a Itens no carrinho","Informação")
   endif
+Return
+
+//Cancelar um item
+Static Function CancelItem()
+  Local aTEste := oInfoEstVal:GetCursorPos()
+
+  if(aTEste[1]<>0)
+    if(MsgyesNo("Deseja realmente excluir o item "+cValToChar(aTEste[1])+"?"+CRLF+aListaProduto[aTEste[1]][2]+CRLF,"Confirmação exclusão"))  
+
+      if(U_SenhaLibera())
+        aDel (aListaProduto , aTEste[1])
+        aSize(aListaProduto,len(aListaProduto)-1)
+        oInfoEstVal:ClearRows()
+        oInfoEstVal:setRowData( 1, {|o| {space(75), space(325),space(50) ,space(100),space(100),space(100),space(130)}})
+        RefazList()
+        FwAlertSuccess("Item Cancelado com sucesso!","Sucesso")
+      else
+        FwAlertError("Operação não aprovada pelo Supervisor","Falha")
+      endif
+    endif
+  else
+    FwAlertInfo("Para dar continuidade no processo por favor selecione um item!"+CRLF,"Informação")
+  endif
+Return
+
+//refazer a lista de produto na venda
+Static Function RefazList()
+  Local nLinha
+
+  nTotal        := 0
+  nSubTotal     := 0
+  nDesconto     := 0
+
+    for nLinha:=1 to len(aListaProduto)
+      oInfoEstVal:setRowData( nLinha, {|| {aListaProduto[nLinha][1], aListaProduto[nLinha][2],cValToChar(aListaProduto[nLinha][3]) ,'R$'+alltrim(StrTran(Str(aListaProduto[nLinha][7],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][8],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][9],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][10],,2),'.',','))}})
+      oInfoEstVal:setRowColor( nLinha, RGB(255,255,255), RGB(136,136,136))
+      nTotal    += aListaProduto[nLinha][10]
+      nSubTotal += aListaProduto[nLinha][8]
+    next nLinha
 Return
 
 
