@@ -55,6 +55,7 @@ User Function SenhaLibera()
   oDlgLibera:Activate(,,,.T.,,,)
 Return lRet
 
+//Função de validação de senha
 Static Function ValidaSenha()
   if(alltrim(cSenhaSUP)==CSENHALIBERA)
     FwAlertSuccess("Operação liberada com sucesso!","Sucesso")

@@ -477,6 +477,9 @@
 		},
 		{
 			"label": "U_LoginPDV"
+		},
+		{
+			"label": "U_FinalizarVenda"
 		}
 	],
 	"lastProgramExecuted": "SIGACOM"

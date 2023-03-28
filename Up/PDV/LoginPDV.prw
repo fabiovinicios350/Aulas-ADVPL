@@ -5,7 +5,7 @@
 
 //Constantes
 #DEFINE cTITULO 'Algoritimos para fazer o login no PDV
-#DEFINE cTITULODLG 'Login' 
+#DEFINE cTITULODLG 'Login'
 
 //Cor
 #DEFINE COR_FUNDO_PADRAO RGB(216,216,216)
@@ -78,7 +78,7 @@ Static Function VendConsPadrao()
   Local aArea   := GetArea()
 
   DbSelectArea("SA3")
-  If ConPad1(,,,"SA3",,,.F.)//Função de Consulta padrão na tabela de produto
+  If ConPad1(,,,"SA3",,,.F.)//Função de Consulta padrão na tabela de vendedor
       cCodVendedor:= SA3->A3_COD
       cNomeVendedor:= SA3->A3_NOME
       cNomeReduzido:= SA3->A3_NREDUZ
@@ -88,14 +88,15 @@ Static Function VendConsPadrao()
   RestArea(aArea)
 Return 
 
-//Consulta padrão do vendedor
+//Função para logar no PDV
 Static Function Logar()
     if(alltrim(cNomeVendedor)=='')
       FwAlertError("o vendedor não foi informado","Falha")
     elseif(alltrim(cLoja)=='')
       FwAlertError("A loja nao foi informada","Falha")
     else
-      U_HomePdv({cCodVendedor,cNomeVendedor},cLoja)
+      U_HomePdv({cCodVendedor,cNomeVendedor},cLoja)//Chamar o PDV
+      oDlgLoginPdv:End()
     endif
-Return 
+Return
 

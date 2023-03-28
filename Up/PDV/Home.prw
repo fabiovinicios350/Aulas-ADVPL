@@ -16,8 +16,8 @@
   @since 03/03/2023
 /*/
 
-//Função que simula um PDV
-User Function HomePdv(aVendedor,cLoja)
+//Função que criação do PDV
+User Function HomePdv(aVend,cLoj)
 
   //CSS
   Local cCssDlg :=;
@@ -100,10 +100,11 @@ User Function HomePdv(aVendedor,cLoja)
   "}"
 
   //Variaveis Global
-  Private cCodVend        := aVendedor[1]
-  Private cNomeVend       := aVendedor[2]
+  Private cCodVend        := aVend[1]
+  Private cNomeVend       := aVend[2]
   Private cNomeCliente    := space(50)
   Private cCodCli         := space(20)
+  Private cLoja           := cLoj
   Private oDlg
 
   //Variaveis Produto
@@ -164,7 +165,7 @@ User Function HomePdv(aVendedor,cLoja)
   oProduto:= TGroup():New(117,7,314,169,,oDlg,,,.T.)
   
   //Botões para aplicar as funções
-  oFinalizar := TButton():New( 235, 177, "Finalizar",oDlg,{||alert("Finalizar")}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oFinalizar := TButton():New( 235, 177, "Finalizar",oDlg,{||FinalizaVenda()}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
   oFinalizar:SetCss( cCssBTFinalizar )
   oDesconto := TButton():New( 235, 270, "Desconto",oDlg,{||DescontoAplicado()}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
   oDesconto:SetCss( cCssBTDesconto )
@@ -238,7 +239,7 @@ Static Function CliConsPadrao()
   RestArea(aArea)
 Return
 
-//Verificando produto
+//Buscando produto*
 Static Function BuscaProduto(cValor,nTipo)
   Local aArea         := GetArea()
   Local cAlias        := GetNextAlias()
@@ -297,42 +298,21 @@ Return .T.
 Static Function IncluiProduto()
   Local nLinha := len(aListaProduto)
   
+  //Incluindo no Grid
   nCount++
   oInfoEstVal:setRowData( nCount, {|| {aListaProduto[nLinha][1], aListaProduto[nLinha][2],cValToChar(aListaProduto[nLinha][3]) ,'R$'+alltrim(StrTran(Str(aListaProduto[nLinha][7],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][8],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][9],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][10],,2),'.',','))}})
   oInfoEstVal:setRowColor( nCount, RGB(255,255,255), RGB(136,136,136))
 
+  //Calculando o resumo
   nTotal    += aListaProduto[nLinha][10]
   nSubTotal += aListaProduto[nLinha][8]
-Return 
-
-//Refazer a lista de venda
-Static Function LoadListProduto()
 Return 
 
 //Cancelar a venda
 Static Function CancelarVenda()
   if(MsgyesNo("Deseja realmente cancelar a venda?","Cancelar"))
-    if(U_SenhaLibera())
-      cNomeCliente := space(50)
-      cCodCli  := space(20)
-      cCodigoEAN    := space(25)
-      cCodProduto   := space(20)
-      cDescrProduto := 'Descrição do produto'
-      cUnidProduto  := ''
-      cBarraProduto := ''
-      nQtdEstProduto:= 0
-      nValProduto   := 0
-      cUrlProduto   := "C:\TOTVS12\Protheus\img\Imagem-inicio.png"
-      nQuantBarra   := 1
-      nQtdProduto   := nil
-      nDescontoProd := nil
-      nTotal        := 0
-      nSubTotal     := 0
-      nDesconto     := 0
-      aListaProduto := {}
-      oFotoProduto:Load(,cUrlProduto)
-      oInfoEstVal:ClearRows()
-      oInfoEstVal:setRowData( 1, {|o| {space(75), space(325),space(50) ,space(100),space(100),space(100),space(130)}})
+    if(U_SenhaLibera())//Solicitando a confirmação do supervisor
+      LimparPDV()
     else
       FwAlertError("Operação não aprovada pelo Supervisor","Falha")
     endif
@@ -341,12 +321,36 @@ Static Function CancelarVenda()
   endif
 Return
 
+//Limpar todos os campos do PDV
+Static Function LimparPDV()
+  cNomeCliente := space(50)
+  cCodCli  := space(20)
+  cCodigoEAN    := space(25)
+  cCodProduto   := space(20)
+  cDescrProduto := 'Descrição do produto'
+  cUnidProduto  := ''
+  cBarraProduto := ''
+  nQtdEstProduto:= 0
+  nValProduto   := 0
+  cUrlProduto   := "C:\TOTVS12\Protheus\img\Imagem-inicio.png"
+  nQuantBarra   := 1
+  nQtdProduto   := nil
+  nDescontoProd := nil
+  nTotal        := 0
+  nSubTotal     := 0
+  nDesconto     := 0
+  aListaProduto := {}
+  oFotoProduto:Load(,cUrlProduto)
+  oInfoEstVal:ClearRows()
+  oInfoEstVal:setRowData( 1, {|o| {space(75), space(325),space(50) ,space(100),space(100),space(100),space(130)}})
+Return
+
 //Aplicar Desconto
 Static Function DescontoAplicado()
   Local nDescAprovado 
 
   if(nSubTotal<>0)
-    nDescAprovado := U_AplicaDesc(nSubTotal,nDesconto)
+    nDescAprovado := U_AplicaDesc(nSubTotal,nDesconto)//Chamando tela de desconto
     if(nDescAprovado==nil)
       FwAlertError("Desconto não aplicado","Falha")
     else
@@ -361,16 +365,15 @@ Return
 
 //Cancelar um item
 Static Function CancelItem()
-  Local aTEste := oInfoEstVal:GetCursorPos()
+  Local aTEste := oInfoEstVal:GetCursorPos()//Pegando a linha selecionada
 
   if(aTEste[1]<>0)
     if(MsgyesNo("Deseja realmente excluir o item "+cValToChar(aTEste[1])+"?"+CRLF+aListaProduto[aTEste[1]][2]+CRLF,"Confirmação exclusão"))  
 
-      if(U_SenhaLibera())
-        aDel (aListaProduto , aTEste[1])
+      if(U_SenhaLibera())//Solicitando a liberação pelo supervisor
+        //Excluindo o item da array e refazendo o grid
+        aDel(aListaProduto , aTEste[1])
         aSize(aListaProduto,len(aListaProduto)-1)
-        oInfoEstVal:ClearRows()
-        oInfoEstVal:setRowData( 1, {|o| {space(75), space(325),space(50) ,space(100),space(100),space(100),space(130)}})
         RefazList()
         FwAlertSuccess("Item Cancelado com sucesso!","Sucesso")
       else
@@ -386,16 +389,34 @@ Return
 Static Function RefazList()
   Local nLinha
 
+  //Limpando a grid
+  oInfoEstVal:ClearRows()
+  oInfoEstVal:setRowData( 1, {|o| {space(75), space(325),space(50) ,space(100),space(100),space(100),space(130)}})
+
+  //Zerando o Resumo
   nTotal        := 0
   nSubTotal     := 0
   nDesconto     := 0
-
-    for nLinha:=1 to len(aListaProduto)
-      oInfoEstVal:setRowData( nLinha, {|| {aListaProduto[nLinha][1], aListaProduto[nLinha][2],cValToChar(aListaProduto[nLinha][3]) ,'R$'+alltrim(StrTran(Str(aListaProduto[nLinha][7],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][8],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][9],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][10],,2),'.',','))}})
-      oInfoEstVal:setRowColor( nLinha, RGB(255,255,255), RGB(136,136,136))
-      nTotal    += aListaProduto[nLinha][10]
-      nSubTotal += aListaProduto[nLinha][8]
-    next nLinha
+    
+  //Preenchendo o Grid
+  for nLinha:=1 to len(aListaProduto)
+    oInfoEstVal:setRowData( nLinha, {|| {aListaProduto[nLinha][1], aListaProduto[nLinha][2],cValToChar(aListaProduto[nLinha][3]) ,'R$'+alltrim(StrTran(Str(aListaProduto[nLinha][7],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][8],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][9],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][10],,2),'.',','))}})
+    oInfoEstVal:setRowColor( nLinha, RGB(255,255,255), RGB(136,136,136))
+    nTotal    += aListaProduto[nLinha][10]
+    nSubTotal += aListaProduto[nLinha][8]
+  next nLinha
 Return
 
-
+//Função para finalizar a venda
+Static Function FinalizaVenda()
+  if(len(aListaProduto)>0)
+    if(U_FinalizarVenda(nTotal,nDesconto,nSubTotal))
+      if(MsgyesNo('Deseja Imprimir o Cupom Fiscal','Cupom Fiscal'))
+        FwAlertSuccess('Cupom Fiscal enviado para a Impressora','Sucesso')
+      endif
+      LimparPDV()
+    endif
+  else
+    FwAlertError("Não existe produtos no carrinho","Falha")
+  endif
+Return 
