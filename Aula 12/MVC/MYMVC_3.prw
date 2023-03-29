@@ -81,7 +81,6 @@ Static Function ViewDef()
   oView:CreateHorizontalBox('Cursos',30)
   oView:CreateHorizontalBox('Alunos',70)
 
-
   oView:SetOwnerView('VIEW_ZZC','Cursos')
   oView:SetOwnerView('VIEW_ZZB','Alunos')
   
@@ -114,10 +113,9 @@ Static Function MostrarMsg(oView)
 Return 
 
 Static Function CarregaNome(oView)
-  Local cNome   := 'Curso'
   Local oModel  := oView:GetModel('ZZCMASTER')
   
-  oModel:SetValue('ZZC_NOME', cNome)
+  oModel:SetValue('ZZC_NOME', '')
   oView:Refresh()
 Return
 
@@ -138,7 +136,7 @@ Static Function ValidPos(oObjeto)
   Local cConteudo   := oObjeto:GetValue('ZZCMASTER','ZZC_NOME')
 
   Local lTudoOK     := .T.
-
+  
   if(nOperation==5)
     lTudoOK := .F.
     Help(,,'Nao autorizado!',,'Voce nao tem autorização para fazer exclusões', 1, 0,,,,,,{'Contate o administrador'})

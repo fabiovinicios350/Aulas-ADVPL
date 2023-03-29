@@ -76,7 +76,7 @@ Static Function ViewDef()
   oView:EnableTitleView('VIEW_ZZB', 'Alunos Matriculados')
 
   // oView:SetCloseOnOK({|| !MsgyesNo("Deseja fazer um novo cadastro","Confirmação")	})
-
+  
 Return oView
 
 User Function Marcar()
@@ -93,7 +93,6 @@ User Function Marcar()
 
   oMark:Refresh(.T.)
 Return
-
 
 User Function Desmarca()
   DbSelectArea('ZZC')

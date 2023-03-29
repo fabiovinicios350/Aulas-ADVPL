@@ -46,7 +46,7 @@ Return aRotina
   @version 1.0
 /*/
 Static Function ModelDef()
-
+  
   //Variavel de validação
   Local bModelPos      := {|oModel| ValidModelPos(oModel)}
 
@@ -91,8 +91,7 @@ Static function ValidModelPos(oModel)
   
   if nOper = 3 .or. nOper = 4
     if(len(alltrim(cConteudo))==2)
-      Help(,,'Sigla Incoreta!',,'Sigla precisa conter 1 ou 3 caracteres', 1, 0,,,,,,{''})
-      FwAlertError('A sigla precisa conter 1 ou 3 digitos','Sigla incorreta')
+      Help(,,'Sigla Incoreta!',,'Sigla precisa conter 1 ou 3 caracteres', 1, 0,,,,,,{'Por favor colocar uma sigla valida'})
       lTudoOK := .F.
     else
       lTudoOK := .T.

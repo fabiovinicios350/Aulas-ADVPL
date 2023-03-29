@@ -18,7 +18,7 @@ User Function BusProdSQL()
   PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'COM'
 
   cQuery := 'SELECT B1_DESC' + CRLF
-  cQuery += 'FROM ' + RrtSqlName('SB1') + CRLF
+  cQuery += 'FROM ' + RetSqlName('SB1') + CRLF
   cQuery += "WHERE BI_COD = '" + cCodigo + "'"
 
   TCQUERY cQuery ALIAS &(cAlias) NEW
