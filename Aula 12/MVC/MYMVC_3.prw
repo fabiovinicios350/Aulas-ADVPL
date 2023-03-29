@@ -21,7 +21,6 @@ User Function MYMVC_3()
   oBrowse:Activate()
 Return
 
-
 Static Function MenuDef()
   Local aRotina   := {}
 
@@ -30,7 +29,6 @@ Static Function MenuDef()
   ADD OPTION aRotina TITLE 'Mudar'        ACTION 'VIEWDEF.MYMVC_3' OPERATION 4 ACCESS 0
   ADD OPTION aRotina TITLE 'Deletar'      ACTION 'VIEWDEF.MYMVC_3' OPERATION 5 ACCESS 0
 Return aRotina
-
 
 Static Function ModelDef()
   //Validações do modelo

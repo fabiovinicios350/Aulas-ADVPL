@@ -9,7 +9,6 @@
   @since 27/03/2023
   @version 1.0
 /*/
-
 User Function MVCVEI()
   Local cAlias    :=  'ZZV'
   Local cTitle    :=  'Cadastro de Veiculos'
@@ -22,13 +21,7 @@ User Function MVCVEI()
   oBrowse:Activate()
 Return
 
-/*/{Protheus.doc} MenuDef
-  Função para adicionar o menu
-  @type  Static_Function
-  @author Fabio 
-  @since 27/03/2023
-  @version 1.0
-/*/
+//Função para colocar as opções da tela
 Static Function MenuDef()
   Local aRotina := {}
 
@@ -37,13 +30,7 @@ Static Function MenuDef()
   ADD OPTION aRotina TITLE 'Excluir' ACTION 'VIEWDEF.MVCVEI' OPERATION 5 ACCESS 0
 Return aRotina
 
-/*/{Protheus.doc} ModelDef
-  Função para definir o modelo de dados
-  @type  Static_Function
-  @author Fabio 
-  @since 27/03/2023
-  @version 1.0
-/*/
+//Função para montar o modelo de dados
 Static Function ModelDef()
   Local oModel    := MPFormModel():New('MVCVEIM')
   Local oStruZZV  := FWFormStruct(1,'ZZV')  
@@ -54,14 +41,7 @@ Static Function ModelDef()
   oModel:SetPrimaryKey({'ZZV_COD'})
 Return oModel
 
-
-/*/{Protheus.doc} ViewDef
-  Função para criar a view
-  @type  Static_Function
-  @author Fabio 
-  @since 27/03/2023
-  @version 1.0
-/*/
+//Função para monstar a view 
 Static Function ViewDef()
   Local oModel    := FwLoadModel('MVCVEI')
   Local oStruZZV  := FwFormStruct(2, 'ZZV')

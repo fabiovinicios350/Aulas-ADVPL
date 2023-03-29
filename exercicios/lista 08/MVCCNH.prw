@@ -3,7 +3,7 @@
 #INCLUDE 'FWMVCDEF.CH'
 
 /*/{Protheus.doc} User Function MVCCNH
-  Exemplo de uso da clase FWMBrowse
+  Função para montar a tela de cadastro de CNH
   @type Function
   @author Fabio
   @since 17/03/2023
@@ -21,13 +21,7 @@ User Function MVCCNH()
   oBrowse:Activate()
 Return
 
-/*/{Protheus.doc} MenuDef
-  Função para adicionar o menu
-  @type  Static_Function
-  @author Fabio 
-  @since 17/03/2023
-  @version 1.0
-/*/
+//Função para colocar as opções da tela
 Static Function MenuDef()
   Local aRotina := {}
 
@@ -36,15 +30,7 @@ Static Function MenuDef()
   ADD OPTION aRotina TITLE 'Excluir' ACTION 'VIEWDEF.MVCCNH' OPERATION 5 ACCESS 0
 Return aRotina
 
-
-
-/*/{Protheus.doc} ModelDef
-  Função para definir o modelo de dados
-  @type  Static_Function
-  @author Fabio 
-  @since 17/03/2023
-  @version 1.0
-/*/
+//Função para montar o modelo de dados
 Static Function ModelDef()
   
   //Variavel de validação
@@ -57,6 +43,8 @@ Static Function ModelDef()
 
   //Aplicando gatilho na estrutura
   oStruZZ2:AddTrigger(aGatilho[1], aGatilho[2], aGatilho[3], aGatilho[4])
+
+  //Aplicando um valor sequencial para o Codigo da CNH
   oStruZZ2:SetProperty('ZZ2_COD', MODEL_FIELD_INIT, FwBuildFeature(STRUCT_FEATURE_INIPAD,  'GetSXENum("ZZ2", "ZZ2_COD")'))
   
   oModel:ADDFields('ZZ2MASTER',/*/PAI/*/,oStruZZ2)
@@ -65,14 +53,7 @@ Static Function ModelDef()
   oModel:SetPrimaryKey({'ZZ2_COD'})
 Return oModel
 
-
-/*/{Protheus.doc} ViewDef
-  Função para criar a view
-  @type  Static_Function
-  @author Fabio 
-  @since 17/03/2023
-  @version 1.0
-/*/
+//Função para monstar a view 
 Static Function ViewDef()
   Local oModel    := FwLoadModel('MVCCNH')
   Local oStruZZ2  := FwFormStruct(2, 'ZZ2')
@@ -84,12 +65,13 @@ Static Function ViewDef()
   oView:SetOwnerView('VIEW_ZZ2','TELA')
 Return oView
 
+//Função para fazer a validação apos clicar na opoção de confirmação
 Static function ValidModelPos(oModel)
   Local nOper       := oModel:Getoperation()
   Local cConteudo   := oModel:GetValue('ZZ2MASTER','ZZ2_SIGLA')
   Local lTudoOK     := .T.
   
-  if nOper = 3 .or. nOper = 4
+  if nOper = 3 .or. nOper = 4 //Operação de inclusão e alteração
     if(len(alltrim(cConteudo))==2)
       Help(,,'Sigla Incoreta!',,'Sigla precisa conter 1 ou 3 caracteres', 1, 0,,,,,,{'Por favor colocar uma sigla valida'})
       lTudoOK := .F.

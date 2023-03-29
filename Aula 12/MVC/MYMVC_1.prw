@@ -3,13 +3,12 @@
 #INCLUDE 'FWMVCDEF.CH'
 
 /*/{Protheus.doc} User Function MYMVC_1
-  Exemplo de uso da clase FWMBrowse
+  Função para montar a tela de cadastro de 
   @type Function
   @author Fabio
   @since 17/03/2023
   @version 1.0
 /*/
-
 User Function MYMVC_1()
   Local cAlias    :=  'ZZC'
   Local cTitle    :=  'Cadastro de cursos'
@@ -21,13 +20,6 @@ User Function MYMVC_1()
   oBrowse:Activate()
 Return
 
-/*/{Protheus.doc} MenuDef
-  Função para adicionar o menu
-  @type  Static_Function
-  @author Fabio 
-  @since 17/03/2023
-  @version 1.0
-/*/
 Static Function MenuDef()
   Local aRotina := {}
 
@@ -36,15 +28,6 @@ Static Function MenuDef()
   ADD OPTION aRotina TITLE 'Excluir' ACTION 'VIEWDEF.MYMVC_1' OPERATION 4 ACCESS 0
 Return aRotina
 
-
-
-/*/{Protheus.doc} ModelDef
-  Função para definir o modelo de dados
-  @type  Static_Function
-  @author Fabio 
-  @since 17/03/2023
-  @version 1.0
-/*/
 Static Function ModelDef()
   Local oModel    := MPFormModel():New('MYMVCM')
   Local oStruZZC  := FWFormStruct(1,'ZZC')  
@@ -55,14 +38,6 @@ Static Function ModelDef()
   oModel:SetPrimaryKey({'ZZC_COD'})
 Return oModel
 
-
-/*/{Protheus.doc} ViewDef
-  Função para criar a view
-  @type  Static_Function
-  @author Fabio 
-  @since 17/03/2023
-  @version 1.0
-/*/
 Static Function ViewDef()
   Local oModel    := FwLoadModel('MYMVC_1')
   Local oStruZZC  := FwFormStruct(2, 'ZZC')

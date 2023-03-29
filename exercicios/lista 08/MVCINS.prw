@@ -28,13 +28,7 @@ User Function MVCINS()
   oMark:Activate()
 Return
 
-/*/{Protheus.doc} MenuDef
-  Função para adicionar o menu
-  @type  Static_Function
-  @author Fabio 
-  @since 27/03/2023
-  @version 1.0
-/*/
+//Função para colocar as opções da tela
 Static Function MenuDef()
   Local aRotina := {}
 
@@ -43,16 +37,12 @@ Static Function MenuDef()
   ADD OPTION aRotina TITLE 'Excluir'        ACTION 'VIEWDEF.MVCINS' OPERATION 5 ACCESS 0
 Return aRotina
 
-/*/{Protheus.doc} ModelDef
-  Função para definir o modelo de dados
-  @type  Static_Function
-  @author Fabio 
-  @since 27/03/2023
-  @version 1.0
-/*/
+//Função para montar o modelo de dados
 Static Function ModelDef()
+  //Variaveis de bloco de codigo para validação
   Local bModelPos := {|oModel| ValidModelPos(oModel)}
 
+  //Variaveis para  mostar a estrutura
   Local oModel    := MPFormModel():New('MVCINSM',,bModelPos)
   Local oStruZZI  := FWFormStruct(1,'ZZI')  
 
@@ -62,14 +52,7 @@ Static Function ModelDef()
   oModel:SetPrimaryKey({'ZZI_COD'})
 Return oModel
 
-
-/*/{Protheus.doc} ViewDef
-  Função para criar a view
-  @type  Static_Function
-  @author Fabio 
-  @since 27/03/2023
-  @version 1.0
-/*/
+//Função para monstar a view 
 Static Function ViewDef()
   Local oModel    := FwLoadModel('MVCINS')
   Local oStruZZI  := FwFormStruct(2, 'ZZI')
@@ -81,17 +64,18 @@ Static Function ViewDef()
   oView:SetOwnerView('VIEW_ZZI','TELA')
 Return oView
 
+//Função para excluir os itens marcados
 User Function ExcMarcados()
-  if(MsgyesNo("Deseja Excluir os Instrutores marcados ","Excluir"))
+  if(MsgyesNo("Deseja Excluir os Instrutores marcados ","Excluir")) //Confimação de exclusão
     DbSelectArea('ZZI')
     ZZI->(DbGoTop())
     While ZZI->(!EOF())
-      if oMark:IsMark()
+      if oMark:IsMark() //Verificar se o registro esta marcado
         if(ZZI->ZZI_QTDALU>0)
           FwAlertError("O Instrutor "+ZZI->ZZI_NOME+" não pode ser excluido, pois existe alunos vinculado","Erro na exclusão")	
         else
-          RecLock('ZZI', .f.)
-            ZZI->(DbDelete())
+          RecLock('ZZI', .F.)
+            ZZI->(DbDelete())//Deletando o revistro selecionado
           ZZI->(MsUnlock())
         endif
       endif
@@ -101,13 +85,18 @@ User Function ExcMarcados()
   endif
 Return
 
+//Função para validação dos campos apos clicar na confirmação
 Static Function ValidModelPos(oModel)
+
+  //Variaveis para pegar os valores dos campos
   Local nOper           := oModel:Getoperation()
   Local dNascimento     := oModel:GetValue('ZZIMASTER','ZZI_DTNAS')
   Local dHabilitado     := oModel:GetValue('ZZIMASTER','ZZI_DTHAB')
   Local nQTDAluno       := oModel:GetValue('ZZIMASTER','ZZI_QTDALU')
   Local cCodCnh         := alltrim(oModel:GetValue('ZZIMASTER','ZZI_CATEG'))
   Local cEscolaridade   := Alltrim(oModel:GetValue('ZZIMASTER','ZZI_ESCOLA'))
+
+  //Variaveis de manipulação
   Local lTudoOK         := .T.
   Local nIdade          := DateDiffYear(dNascimento,Date())
   Local nHabilitado     := DateDiffYear(dHabilitado,Date())
@@ -122,7 +111,7 @@ Static Function ValidModelPos(oModel)
     elseif cEscolaridade=="F"
       Help(,,'Escolaridade invalida',,'Um instrutor precisa ter concluido o Ensino Medio', 1, 0,,,,,,{'Cadastro um Instrutor com o ensino medio completo'})
       lTudoOK := .F.
-    elseif !ValidCNH(cCodCnh)
+    elseif !ValidCNH(cCodCnh)//Validando o codigo da CNH
       Help(,,'Codigo Invalido',,'Codigo da CNH Invalido', 1, 0,,,,,,{'Informar um codigo de CNH valido'})
       lTudoOK := .F.
     else
@@ -138,6 +127,7 @@ Static Function ValidModelPos(oModel)
   endif
 Return lTudoOK
 
+//Função para validar a CNH
 Static Function ValidCNH(cCodigo)
   Local aArea   := GetArea()
   Local cAlias  := GetNextAlias()
