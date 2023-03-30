@@ -22,7 +22,7 @@
 		],
 		"username": "admin",
 		"environment": "environment",
-		"token": "djM6ZGh4MGdnNTk2bWJsZTcxZ2ZxOXVnNHY2bDJrdHM6MTpsb2NhbGhvc3Q6MTIzNDoxOjcuMDAuMjEwMzI0UDoz:djE6ZW52aXJvbm1lbnQ6YWRtaW46cFNoNi9qV3VZY2tEeGYyVWhRU04rRlo5aGUrY3ZRc01lRzN6c2tTK3ZqST0=|djI6MTY4MDAwMzEwNDowOjE6MQ==.3QudfmH8TclSpDv8NsRKN2l7P1CqeV5LsuvslL2i6XUL2GfdXYNTWq4AYJebiKAth705Nx/Y8GwX2rR+ydARNncMFoEkS875SABehj6jqycF4FrKhBDolk9Jl1NiTqytVOO59qXVSg40bXSZt3uGRPQvIVNVohRObbd7ta6sFqDGj9UULGL7uwyuX6llmfdB6G0EzqZAMlRHQholjM4kWWoxDh6T4MSgwghq13y1jPCntN8U5tuAPD7XvGxo/IIHSiVVRsT9h2wD7c92OaOJ05rUDCHheiyF6kYvGEgugPSlcf8L0O5yY8h2M4rCUk4Ld20o4pa05v66J7B6o5rj0A==",
+		"token": "djM6ZGh4MGdnNTk2bWJsZTcxZ2ZxOXVnNHY2bDJrdHM6MTpsb2NhbGhvc3Q6MTIzNDoxOjcuMDAuMjEwMzI0UDoz:djE6ZW52aXJvbm1lbnQ6YWRtaW46cFNoNi9qV3VZY2tEeGYyVWhRU04rRlo5aGUrY3ZRc01lRzN6c2tTK3ZqST0=|djI6MTY4MDE0NjM0MjowOjE6MQ==.y35qBsIX3xlb14Rj8MxKT+BxaEcCm3zB/HTBm4EvoWtlCcZIXepKI5DfL72DwrJSvGMNWX4+PXGZJZ4WTId6HJu2wMyG9bk2geUfciPPJBCU45BrRO0/Zq1XfznAG4aPnL5V/zQ3kiFIZuJKUoOK7kfEeHtAw9eXO6ZjVm7+rMxbA0YQ6YOozuB1xsSNOLyZOzRSIt9XaIXTq+rIkZQjPky5uCsDb4fqICk576oBIw3+LnHXbzZXv/YOeTtu+iEnhe9EyMm2i/nYwMP7qOl6O5ObhR/zd9fWmKr6cg9x/tDEA1VoTTxadbOHV5yaVxq9qysuHogUCeGsYFtqkaDN9g==",
 		"informations": {
 			"permissions": [],
 			"errorMessage": "",
@@ -47,7 +47,7 @@
 			],
 			"username": "admin",
 			"environment": "environment",
-			"token": "djM6ZGh4MGdnNTk2bWJsZTcxZ2ZxOXVnNHY2bDJrdHM6MTpsb2NhbGhvc3Q6MTIzNDoxOjcuMDAuMjEwMzI0UDoz:djE6ZW52aXJvbm1lbnQ6YWRtaW46cFNoNi9qV3VZY2tEeGYyVWhRU04rRlo5aGUrY3ZRc01lRzN6c2tTK3ZqST0=|djI6MTY4MDAwMzEwNDowOjE6MQ==.3QudfmH8TclSpDv8NsRKN2l7P1CqeV5LsuvslL2i6XUL2GfdXYNTWq4AYJebiKAth705Nx/Y8GwX2rR+ydARNncMFoEkS875SABehj6jqycF4FrKhBDolk9Jl1NiTqytVOO59qXVSg40bXSZt3uGRPQvIVNVohRObbd7ta6sFqDGj9UULGL7uwyuX6llmfdB6G0EzqZAMlRHQholjM4kWWoxDh6T4MSgwghq13y1jPCntN8U5tuAPD7XvGxo/IIHSiVVRsT9h2wD7c92OaOJ05rUDCHheiyF6kYvGEgugPSlcf8L0O5yY8h2M4rCUk4Ld20o4pa05v66J7B6o5rj0A==",
+			"token": "djM6ZGh4MGdnNTk2bWJsZTcxZ2ZxOXVnNHY2bDJrdHM6MTpsb2NhbGhvc3Q6MTIzNDoxOjcuMDAuMjEwMzI0UDoz:djE6ZW52aXJvbm1lbnQ6YWRtaW46cFNoNi9qV3VZY2tEeGYyVWhRU04rRlo5aGUrY3ZRc01lRzN6c2tTK3ZqST0=|djI6MTY4MDE0NjM0MjowOjE6MQ==.y35qBsIX3xlb14Rj8MxKT+BxaEcCm3zB/HTBm4EvoWtlCcZIXepKI5DfL72DwrJSvGMNWX4+PXGZJZ4WTId6HJu2wMyG9bk2geUfciPPJBCU45BrRO0/Zq1XfznAG4aPnL5V/zQ3kiFIZuJKUoOK7kfEeHtAw9eXO6ZjVm7+rMxbA0YQ6YOozuB1xsSNOLyZOzRSIt9XaIXTq+rIkZQjPky5uCsDb4fqICk576oBIw3+LnHXbzZXv/YOeTtu+iEnhe9EyMm2i/nYwMP7qOl6O5ObhR/zd9fWmKr6cg9x/tDEA1VoTTxadbOHV5yaVxq9qysuHogUCeGsYFtqkaDN9g==",
 			"informations": {
 				"permissions": [],
 				"errorMessage": "",
@@ -61,9 +61,26 @@
 			"dhx0gg596mble71gfq9ug4v6l2kts:environment",
 			{
 				"id": "dhx0gg596mble71gfq9ug4v6l2kts",
-				"token": "djM6ZGh4MGdnNTk2bWJsZTcxZ2ZxOXVnNHY2bDJrdHM6MTpsb2NhbGhvc3Q6MTIzNDoxOjcuMDAuMjEwMzI0UDoz:djE6ZW52aXJvbm1lbnQ6YWRtaW46cFNoNi9qV3VZY2tEeGYyVWhRU04rRlo5aGUrY3ZRc01lRzN6c2tTK3ZqST0=|djI6MTY4MDAwMzEwNDowOjE6MQ==.3QudfmH8TclSpDv8NsRKN2l7P1CqeV5LsuvslL2i6XUL2GfdXYNTWq4AYJebiKAth705Nx/Y8GwX2rR+ydARNncMFoEkS875SABehj6jqycF4FrKhBDolk9Jl1NiTqytVOO59qXVSg40bXSZt3uGRPQvIVNVohRObbd7ta6sFqDGj9UULGL7uwyuX6llmfdB6G0EzqZAMlRHQholjM4kWWoxDh6T4MSgwghq13y1jPCntN8U5tuAPD7XvGxo/IIHSiVVRsT9h2wD7c92OaOJ05rUDCHheiyF6kYvGEgugPSlcf8L0O5yY8h2M4rCUk4Ld20o4pa05v66J7B6o5rj0A=="
+				"token": "djM6ZGh4MGdnNTk2bWJsZTcxZ2ZxOXVnNHY2bDJrdHM6MTpsb2NhbGhvc3Q6MTIzNDoxOjcuMDAuMjEwMzI0UDoz:djE6ZW52aXJvbm1lbnQ6YWRtaW46cFNoNi9qV3VZY2tEeGYyVWhRU04rRlo5aGUrY3ZRc01lRzN6c2tTK3ZqST0=|djI6MTY4MDE0NjM0MjowOjE6MQ==.y35qBsIX3xlb14Rj8MxKT+BxaEcCm3zB/HTBm4EvoWtlCcZIXepKI5DfL72DwrJSvGMNWX4+PXGZJZ4WTId6HJu2wMyG9bk2geUfciPPJBCU45BrRO0/Zq1XfznAG4aPnL5V/zQ3kiFIZuJKUoOK7kfEeHtAw9eXO6ZjVm7+rMxbA0YQ6YOozuB1xsSNOLyZOzRSIt9XaIXTq+rIkZQjPky5uCsDb4fqICk576oBIw3+LnHXbzZXv/YOeTtu+iEnhe9EyMm2i/nYwMP7qOl6O5ObhR/zd9fWmKr6cg9x/tDEA1VoTTxadbOHV5yaVxq9qysuHogUCeGsYFtqkaDN9g=="
 			}
 		]
 	],
-	"lastConnectedServer": "dhx0gg596mble71gfq9ug4v6l2kts"
+	"lastConnectedServer": "dhx0gg596mble71gfq9ug4v6l2kts",
+	"rpoToken": {
+		"token": "",
+		"header": {
+			"alg": "",
+			"typ": ""
+		},
+		"body": {
+			"auth": "",
+			"exp": "1970-01-01T00:00:00.000Z",
+			"iat": "1970-01-01T00:00:00.000Z",
+			"iss": "",
+			"name": "",
+			"sub": ""
+		},
+		"error": "",
+		"warning": ""
+	}
 }

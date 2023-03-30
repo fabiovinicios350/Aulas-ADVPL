@@ -146,7 +146,7 @@ User Function HomePdv(aVend,cLoj)
   oIconeLupa:lStretch:= .T.
   oGetPesquisa := TGet():New( 92,37,{|u| If( PCount() == 0, cCodigoEAN, cCodigoEAN:=u )},oDlg,125,15,,,0,,,.F.,,.T.,,.F.,,.F.,.F.,{||  BuscaProduto(cCodigoEAN,1)},.F.,.F.,,cCodigoEAN,,,,)
   oGetPesquisa:cPlaceHold := 'Pesquisa Produto...'
-  oGetPesquisa:SetCss( cCssGetPesquisa )  
+  oGetPesquisa:SetCss( cCssGetPesquisa )
   oPesquisa:= TGroup():New(90,07,110,169,,oDlg,,,.T.)
    
   //Informações do produto
@@ -208,7 +208,7 @@ User Function HomePdv(aVend,cLoj)
   oInfoEstVal:setRowData( 1, {|| {space(75), space(325),space(50) ,space(100),space(100),space(100),space(140)}})
   oInfoEstVal:setRowHeight(10)
   oInfoEstVal:lShowGrid:=.F.
-
+  
   oDlg:Activate(,,,,,,)
 Return 
 

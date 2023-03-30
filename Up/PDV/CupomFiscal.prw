@@ -54,7 +54,7 @@ User Function CupomPDV()
     "font: normal 13px Arial;"+;
   "}"
   //Variaveis Globais
-  
+
 
   //Conexão com o banco de dados
   PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'COM'
@@ -62,7 +62,7 @@ User Function CupomPDV()
   //Janela de finalizar
   oJanelaFimDlg := TDialog():New(0,0,644,1274,cTITULOCUPOMDLG,,,,,CLR_TEXTO_CUPOM,COR_FUNDO_PADRAO_CUPOM,,,.T.)
   oJanelaFimDlg:SetCss( cCssDlgCupom )
-
+  
   oTituloApagar := TSay():New(35,235,{||""},oJanelaFimDlg,,,,,,.T.,,,160,10,,,,,,.T.,2,2)
   
   oGrupo := TGroup():New(25,227,300,402,,oJanelaFimDlg,,,.T.)
