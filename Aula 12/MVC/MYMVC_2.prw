@@ -48,7 +48,7 @@ Static Function ModelDef()
   oModel:GetModel('ZZBDETAIL'):SetDescription('Alunos')
 
   oModel:SetRelation('ZZBDETAIL',{{'ZZB_FILIAL','xFilial("ZZB")'},{'ZZB_CURSO','ZZC_CODIGO'}}, ZZB->(IndexKey(1)))
-
+  
   oModel:SetPrimaryKey({'ZZC_CODIGO','ZZB_COD'})
 Return oModel
 

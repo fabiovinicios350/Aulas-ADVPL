@@ -51,7 +51,7 @@ Static Function ModelDef()
   Local aGatilho  := FwStruTrigger('ZZB_COD','ZZB_NOME', 'ZZ1->ZZ1_NOME', .T., 'ZZ1', 1, 'xFilial("ZZ1")+Alltrim(M->ZZB_COD)') 
 
   oStruZZB:AddTrigger(aGatilho[1],aGatilho[2],aGatilho[3],aGatilho[4])
-
+  
   oModel:AddFields('ZZCMASTER',/*/ PAI /*/,oStruZZC,,bFieldPos)
   oModel:AddGrid('ZZBDETAIL','ZZCMASTER',oStruZZB,bLinePre,bLinePos,,,bLoadGrid)
 

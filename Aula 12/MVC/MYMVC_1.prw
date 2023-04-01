@@ -31,7 +31,7 @@ Return aRotina
 Static Function ModelDef()
   Local oModel    := MPFormModel():New('MYMVCM')
   Local oStruZZC  := FWFormStruct(1,'ZZC')  
-
+  
   oModel:ADDFields('ZZCMASTER',/*/PAI/*/,oStruZZC)
   oModel:SetDescription('Modelo de dados de Cursos')
   oModel:GetModel('ZZCMASTER'):SetDescription('Formulario de cursos')
