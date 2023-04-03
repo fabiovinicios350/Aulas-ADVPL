@@ -483,7 +483,10 @@
 		},
 		{
 			"label": "U_CupomPDV"
+		},
+		{
+			"label": "U_PSAY"
 		}
 	],
-	"lastProgramExecuted": "U_CupomPDV"
+	"lastProgramExecuted": "SIGACOM"
 }

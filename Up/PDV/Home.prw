@@ -365,14 +365,14 @@ Return
 
 //Cancelar um item
 Static Function CancelItem()
-  Local aTEste := oInfoEstVal:GetCursorPos()//Pegando a linha selecionada
+  Local aCursor := oInfoEstVal:GetCursorPos()//Pegando a linha selecionada
 
-  if(aTEste[1]<>0)
-    if(MsgyesNo("Deseja realmente excluir o item "+cValToChar(aTEste[1])+"?"+CRLF+aListaProduto[aTEste[1]][2]+CRLF,"Confirmação exclusão"))  
+  if(aCursor[1]<>0)
+    if(MsgyesNo("Deseja realmente excluir o item "+cValToChar(aCursor[1])+"?"+CRLF+aListaProduto[aCursor[1]][2]+CRLF,"Confirmação exclusão"))  
 
       if(U_SenhaLibera())//Solicitando a liberação pelo supervisor
         //Excluindo o item da array e refazendo o grid
-        aDel(aListaProduto , aTEste[1])
+        aDel(aListaProduto , aCursor[1])
         aSize(aListaProduto,len(aListaProduto)-1)
         RefazList()
         FwAlertSuccess("Item Cancelado com sucesso!","Sucesso")
