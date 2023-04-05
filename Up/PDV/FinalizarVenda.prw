@@ -201,5 +201,10 @@ Static Function Pagar()
 Return 
 
 Static Function GravaVenda()
+  nCreditoVend    := nCredito
+  nPIXVend        := nPix
+  nDebitoVend     := nDebito
+  nDinheiroVend   := nDinheiro
+  nTrocoVend      := nTroco
   FwAlertSuccess('Venda Finalzada com sucesso','Sucesso')
 Return

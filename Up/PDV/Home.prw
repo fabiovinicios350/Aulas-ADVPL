@@ -102,8 +102,9 @@ User Function HomePdv(aVend,cLoj)
   //Variaveis Global
   Private cCodVend        := aVend[1]
   Private cNomeVend       := aVend[2]
-  Private cNomeCliente    := space(50)
   Private cCodCli         := space(20)
+  Private cNomeCliente    := space(50)
+  Private cCPFCliente    := space(50)
   Private cLoja           := cLoj
   Private oDlg
 
@@ -128,6 +129,11 @@ User Function HomePdv(aVend,cLoj)
   Private nTotal          := 0
   Private nSubTotal       := 0
   Private nDesconto       := 0
+  Private nCreditoVend    := 0
+  Private nPIXVend        := 0
+  Private nDebitoVend     := 0
+  Private nDinheiroVend   := 0
+  Private nTrocoVend      := 0
 
   //Conexão com o banco de dados
   PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'COM'
@@ -196,8 +202,12 @@ User Function HomePdv(aVend,cLoj)
   oResumo:= TGroup():New(265,418,317,633,,oDlg,,,.T.)
 
   //Lista de produtos na venda
+
   oListaProduto:= TGroup():New(7,177,229,632,,oDlg,,,.T.)
-  oInfoEstVal  := TGrid():New( oDlg, 12, 182, 445, 207)
+  oScrollTgrid := TScrollArea():New(oDlg,12,182,207,445)
+  oInfoEstVal  := TGrid():New( oDlg, 12, 182, 445, 1000)
+  oScrollTgrid:SetFrame( oInfoEstVal )
+
   oInfoEstVal:AddColumn( 1, "Cod", 75, CONTROL_ALIGN_LEFT,.T.)
   oInfoEstVal:AddColumn( 2, "Produto", 325, CONTROL_ALIGN_LEFT,.T.)
   oInfoEstVal:AddColumn( 3, "Qtde", 50, 0,.T.)
@@ -233,6 +243,7 @@ Static Function CliConsPadrao()
   If ConPad1(,,,"SA1",,,.F.)//Função de Consulta padrão na tabela de cliente
       cNomeCliente:= SA1->A1_NOME
       cCodCli:= SA1->A1_COD
+      cCPFCliente := SA1->A1_CGC
   EndIf
 
   DbCloseArea()
@@ -349,7 +360,7 @@ Return
 Static Function DescontoAplicado()
   Local nDescAprovado 
 
-  if(nSubTotal<>0)
+  if(len(aListaProduto)>0)
     nDescAprovado := U_AplicaDesc(nSubTotal,nDesconto)//Chamando tela de desconto
     if(nDescAprovado==nil)
       FwAlertError("Desconto não aplicado","Falha")
@@ -412,6 +423,7 @@ Static Function FinalizaVenda()
   if(len(aListaProduto)>0)
     if(U_FinalizarVenda(nTotal,nDesconto,nSubTotal))
       if(MsgyesNo('Deseja Imprimir o Cupom Fiscal','Cupom Fiscal'))
+        U_CupomPDV()
         FwAlertSuccess('Cupom Fiscal enviado para a Impressora','Sucesso')
       endif
       LimparPDV()
