@@ -61,7 +61,7 @@ Static Function Imprimir(oRel, cAlias)
     oSection:Cell('B1_UM'):SetValue((cAlias)->(B1_UM))
     oSection:Cell('B1_PRV1'):SetValue((cAlias)->(B1_PRV1))
     oSection:Cell('B1_LOCPAD'):SetValue((cAlias)->(B1_LOCPAD))
-
+    
     //Printando no relatorio
     oSection:PrintLine()
     oRel:IncMeter()
