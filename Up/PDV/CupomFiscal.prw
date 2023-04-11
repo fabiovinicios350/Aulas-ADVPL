@@ -96,6 +96,7 @@ User Function CupomPDV()
       '<td colspan="7"><hr></td>'+;
     '</tr>'
 
+    //Inserindo os itens no cupom
     for nLinha:=1 to Len(aListaProduto)
       cCupom += ''+;
       '<tr>'+;
@@ -171,7 +172,7 @@ User Function CupomPDV()
 
   //Conexão com o banco de dados
   PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'COM'
-
+  
   //Janela de finalizar
   oJanelaFimDlg := TDialog():New(0,0,644,1274,cTITULOCUPOMDLG,,,,,CLR_TEXTO_CUPOM,COR_FUNDO_PADRAO_CUPOM,,,.T.)
   oJanelaFimDlg:SetCss( cCssDlgCupom )

@@ -53,7 +53,7 @@ User Function AplicaDesc(nValTotal,nDesc)
   //Verificar se ja existe um desconto
   if(nDesc>0)
     cDesc:= "R$ "+cValToChar(nDesc)
-    cPor:= cValToChar((nDesc*100)/nValTotal)
+    cPor:= alltrim(Str(((nDesc*100)/nValTotal),,0))
   endif
 
   //Janela do PDV
@@ -84,23 +84,27 @@ Return nRes
 
 //Função para calculcar o desconto
 Static Function CalcDesc(nPorc,nValor)
-  cDesc:= "R$ "+cValToChar((nPorc/100)*nValor)
   nDesconto:= (nPorc/100)*nValor
+  cDesc:= "R$ "+alltrim(Str((nPorc/100)*nValor,,2))
 Return 
 
 //Função para validar e aplicar o desconto
 Static Function AplicDesc(nValor)
   Local lAprova := .T.
 
-  if ((nDesconto*100)/nValor)>10
-    lAprova := U_SenhaLibera()
-  endif
+  if alltrim(cDesc)<>''
+    if ((nDesconto*100)/nValor)>10
+      lAprova := U_SenhaLibera()
+    endif
 
-  if lAprova
-    nRes := nDesconto
-    oDlgAplicaDesc:End()
+    if lAprova
+      nRes := nDesconto
+      oDlgAplicaDesc:End()
+    else
+      FwAlertError("Desconto não aprovado pelo Supervidor","Não aprovado")
+    endif
   else
-    FwAlertError("Desconto não aprovado pelo Supervidor","Não aprovado")
+    FwAlertError("Desconto não informado","Não aprovado")
   endif
 
 Return 

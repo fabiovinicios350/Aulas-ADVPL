@@ -486,7 +486,10 @@
 		},
 		{
 			"label": "U_PSAY"
+		},
+		{
+			"label": "u_Detalhes"
 		}
 	],
-	"lastProgramExecuted": "SIGACOM"
+	"lastProgramExecuted": "U_LoginPDV"
 }

@@ -1,5 +1,8 @@
 #INCLUDE 'PROTHEUS.CH'
 
+#DEFINE COR_FUNDO_PADRAO RGB(216,216,216)
+#DEFINE CLR_TEXTO RGB(136,136,136)
+
 User Function IntVisual()
   Local cTitulo   := 'Essa e uma janela bacana'
   Local cTexto    := 'CNPJ:'
@@ -16,3 +19,12 @@ User Function IntVisual()
   ACTIVATE MSDIALOG oDlg CENTERED
 
 Return 
+
+
+
+
+oDlg := TDialog():New(000,000,97,252,'Exemplo TDialog',,,,,CLR_TEXTO,COR_FUNDO_PADRAO,,,.T.)
+
+oGruplogo:= TGroup():New(007,007,82,169,,oDlg,,,.T.)
+
+oDlg:Activate(,,,.T.,,,)

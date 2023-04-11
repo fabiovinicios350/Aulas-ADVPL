@@ -11,6 +11,7 @@
 #DEFINE COR_FUNDO_PADRAO RGB(216,216,216)
 #DEFINE CLR_TEXTO RGB(136,136,136)
 
+
 /*/
   @author Fabio
   @since 03/03/2023
@@ -175,7 +176,7 @@ User Function HomePdv(aVend,cLoj)
   oFinalizar:SetCss( cCssBTFinalizar )
   oDesconto := TButton():New( 235, 270, "Desconto",oDlg,{||DescontoAplicado()}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
   oDesconto:SetCss( cCssBTDesconto )
-  oPesquisar := TButton():New( 235, 362, "Pesquisa",oDlg,{||alert("Pesquisa")}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
+  oPesquisar := TButton():New( 235, 362, "Pesquisa",oDlg,{||ExibirDetalhes()}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
   oPesquisar:SetCss( cCssBTPesquisa )
   oCancelarItem := TButton():New( 235, 455, "Cancelar Item",oDlg,{||CancelItem()}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
   oCancelar := TButton():New( 235, 547, "Cancelar",oDlg,{||CancelarVenda()}, 85,25,,,.F.,.T.,.F.,,.F.,,,.F. )
@@ -202,12 +203,10 @@ User Function HomePdv(aVend,cLoj)
   oResumo:= TGroup():New(265,418,317,633,,oDlg,,,.T.)
 
   //Lista de produtos na venda
-
   oListaProduto:= TGroup():New(7,177,229,632,,oDlg,,,.T.)
   oScrollTgrid := TScrollArea():New(oDlg,12,182,207,445)
   oInfoEstVal  := TGrid():New( oDlg, 12, 182, 445, 1000)
   oScrollTgrid:SetFrame( oInfoEstVal )
-
   oInfoEstVal:AddColumn( 1, "Cod", 75, CONTROL_ALIGN_LEFT,.T.)
   oInfoEstVal:AddColumn( 2, "Produto", 325, CONTROL_ALIGN_LEFT,.T.)
   oInfoEstVal:AddColumn( 3, "Qtde", 50, 0,.T.)
@@ -308,15 +307,26 @@ Return .T.
 //Incluindo produto na lista de venda
 Static Function IncluiProduto()
   Local nLinha := len(aListaProduto)
+  Local nI
   
   //Incluindo no Grid
   nCount++
   oInfoEstVal:setRowData( nCount, {|| {aListaProduto[nLinha][1], aListaProduto[nLinha][2],cValToChar(aListaProduto[nLinha][3]) ,'R$'+alltrim(StrTran(Str(aListaProduto[nLinha][7],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][8],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][9],,2),'.',',')),'R$ '+alltrim(StrTran(Str(aListaProduto[nLinha][10],,2),'.',','))}})
   oInfoEstVal:setRowColor( nCount, RGB(255,255,255), RGB(136,136,136))
 
-  //Calculando o resumo
-  nTotal    += aListaProduto[nLinha][10]
-  nSubTotal += aListaProduto[nLinha][8]
+  if(nDesconto>0)
+    FwAlertInfo("O Desconto foi removido!","Deconto")
+  endif
+  //Zerando o Resumo
+  nTotal        := 0
+  nSubTotal     := 0
+  nDesconto     := 0
+    
+  //Calculando o total
+  for nI:=1 to len(aListaProduto)
+    nTotal    += aListaProduto[nI][10]
+    nSubTotal += aListaProduto[nI][8]
+  next nLinha
 Return 
 
 //Cancelar a venda
@@ -386,6 +396,9 @@ Static Function CancelItem()
         aDel(aListaProduto , aCursor[1])
         aSize(aListaProduto,len(aListaProduto)-1)
         RefazList()
+        if(nDesconto>0)
+          FwAlertInfo("O Desconto foi removido!","Deconto")
+        endif
         FwAlertSuccess("Item Cancelado com sucesso!","Sucesso")
       else
         FwAlertError("Operação não aprovada pelo Supervisor","Falha")
@@ -420,7 +433,7 @@ Return
 
 //Função para finalizar a venda
 Static Function FinalizaVenda()
-  if(len(aListaProduto)>0)
+  if(len(aListaProduto)>0 .and. alltrim(cNomeCliente)<>'')
     if(U_FinalizarVenda(nTotal,nDesconto,nSubTotal))
       if(MsgyesNo('Deseja Imprimir o Cupom Fiscal','Cupom Fiscal'))
         U_CupomPDV()
@@ -428,7 +441,23 @@ Static Function FinalizaVenda()
       endif
       LimparPDV()
     endif
+  elseif(alltrim(cNomeCliente)=='')
+    FwAlertError("Por favor informe o cliente","Cliente não informado")
   else
-    FwAlertError("Não existe produtos no carrinho","Falha")
+    FwAlertError("Não existe produtos no carrinho","carrinho vazio")
   endif
+Return 
+
+//Função para mostrar os detalhes do item selecionado
+Static Function ExibirDetalhes()
+  Local aCursor := oInfoEstVal:GetCursorPos()//Pegando a linha selecionada
+
+  if(len(aListaProduto)>0 .and. aCursor[1]<>0)
+    U_Detalhes(aListaProduto[aCursor[1]][1])
+  elseif(len(aListaProduto)==0)
+    FwAlertError("Não existe produtos no carrinho","Falha")
+  else
+    FwAlertError("Por favor selecione um produto","Produto não selecionado")
+  endif
+  
 Return 
