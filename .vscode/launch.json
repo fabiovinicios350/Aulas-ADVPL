@@ -489,6 +489,9 @@
 		},
 		{
 			"label": "u_Detalhes"
+		},
+		{
+			"label": "U_ZJSONKIT"
 		}
 	],
 	"lastProgramExecuted": "SIGAFAT"

@@ -13,6 +13,7 @@ User Function MYMVC_1()
   Local cAlias    :=  'ZZC'
   Local cTitle    :=  'Cadastro de cursos'
   Local oBrowse := FWMBrowse():New()
+  
 
   oBrowse:SetAlias(cAlias)
   oBrowse:SetDescription(cTitle)
