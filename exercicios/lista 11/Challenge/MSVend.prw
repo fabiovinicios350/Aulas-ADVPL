@@ -88,6 +88,7 @@ Static Function MontaRel(cAlias)
 Return
 
 Static Function Cabecalho()
+  oPrint:SayBitMap(15, 15, LOGO_EMPRESA, 300,90)
   oPrint:SayAlign(30, 15, "MICROSIGA SOFWARES S.A.", oFont18Bold,565,,,1)
   oPrint:SayAlign(47, 15, "AV. BRASIL, 329 CAMPINAS/SP 13098-888", oFont14,565,,,1)
   oPrint:SayAlign(60, 15, "E-mail: motores@ultramotores.com.br", oFont12Bold,565,,,1)
@@ -310,4 +311,9 @@ Static Function Rodap(cAlias)
 
   
   oPrint:Box(nLinhaRod,15, 830,580, '-6')
+  nLinhaRod+= 15
+  oPrint:Say(nLinhaRod, 25,'Mensagem', oFont12Bold,, PRETO)
+  oPrint:Say(nLinhaRod, 50,': '+cMensagem, oFont12,, PRETO)
+
+  oPrint:SayAlign(nLinhaRod,455,"Paginas 1/1",   oFont16Bold,100,,,1)
 Return 
