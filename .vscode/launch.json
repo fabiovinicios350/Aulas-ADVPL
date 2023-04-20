@@ -492,7 +492,22 @@
 		},
 		{
 			"label": "U_ZJSONKIT"
+		},
+		{
+			"label": "PlanEx"
+		},
+		{
+			"label": "U_PlanEx"
+		},
+		{
+			"label": "U_PlanFor"
+		},
+		{
+			"label": "U_PlanProd"
+		},
+		{
+			"label": "U_PlanCursos"
 		}
 	],
-	"lastProgramExecuted": "SIGAFAT"
+	"lastProgramExecuted": "U_PlanProd"
 }
