@@ -9,14 +9,17 @@
 
 #DEFINE LOGO_EMPRESA  'C:\TOTVS12\Protheus\img\logo-totvs.jpeg'
 
-/*/{Protheus.doc} User Function MSProd
+/*/{Protheus.doc} User Function MSChal
   (Função para gerar o relatorio em MSPrinter de pedido de venda)
   @type  Function
   @author Fabio
   @since 17/04/2023
 /*/
-User Function MSVEND()
-  Local cAlias := GeraCons()
+User Function MSVeCha()
+  Local cAlias 
+
+  cConteudoLog += 'Log do pedido '+M->C5_NUM+CRLF+CRLF
+  cAlias := GeraCons()
 
   if !Empty(cAlias)
     Processa({|| MontaRel(cAlias)}, 'Aguarde...', 'Impimindo relatorio', .T.)
@@ -30,6 +33,7 @@ Static Function GeraCons()
   Local cAlias    := GetNextAlias()
   Local cQuery    := ''
 
+  cConteudoLog += '['+Time()+'] - Gerando consulta SQL'+CRLF
   cQuery := "SELECT"+CRLF+;
 	"SA1.A1_COD, SA1.A1_NOME, SA1.A1_EMAIL, SA1.A1_IPWEB, SA1.A1_CONTATO, SA1.A1_END, SA1.A1_BAIRRO, SA1.A1_MUN, SA1.A1_CEP, SA1.A1_DDD,SA1.A1_TEL, SA1.A1_FAX, SA1.A1_CGC, SA1.A1_INSCR,"+CRLF+;
 	"SE4.E4_CODIGO, SE4.E4_DESCRI,"+CRLF+;
@@ -43,7 +47,7 @@ Static Function GeraCons()
   "JOIN "+RetSqlName('SE4')+" SE4 ON SE4.E4_CODIGO = SC5.C5_CONDPAG AND SE4.D_E_L_E_T_=' '"+CRLF+;
   "LEFT JOIN "+RetSqlName('SA4')+" SA4 ON SA4.A4_COD = SC5.C5_TRANSP AND SA4.D_E_L_E_T_=' '"+CRLF+;
   "LEFT JOIN "+RetSqlName('SA3')+" SA3 ON SA3.A3_COD = SC5.C5_VEND1 AND SA3.D_E_L_E_T_=' '"+CRLF+;
-  "WHERE SC5.D_E_L_E_T_=' ' AND SC5.C5_NUM='"+SC5->C5_NUM+"'"
+  "WHERE SC5.D_E_L_E_T_=' ' AND SC5.C5_NUM='"+M->C5_NUM+"'"
 
   TCQUERY cQuery ALIAS (cAlias) NEW
 
@@ -57,8 +61,7 @@ Static Function GeraCons()
 Return cAlias
 
 Static Function MontaRel(cAlias)
-  Local cCaminho := 'C:\Users\User\Desktop\ADVPL\'
-  Local cArquivo := 'RelProd.pdf'
+  Local cArquivo := 'Vend'+M->C5_NUM+'.pdf'
 
   Private nLinha := 145
   Private oPrint
@@ -72,8 +75,11 @@ Static Function MontaRel(cAlias)
   Private oFont16Bold := TFont():New('Arial',,16,,.T.,,,,,.F.,.F.)
   Private oFont18Bold := TFont():New('Arial',,18,,.T.,,,,,.F.,.F.)
 
+  cConteudoLog += '['+Time()+'] - Criando o relatorio'+CRLF
+
   oPrint := FwMSPrinter():New(cArquivo, IMP_PDF, .F., '', .T.,, @oPrint, '',,,,.T.)
-  oPrint:cPathPDF := cCaminho
+  oPrint:cPathPDF := cCaminho + cPasta
+  cConteudoLog += '['+Time()+'] -  Executando a Query no banco de dados'+CRLF
 
   oPrint:SetPortrait()
   oPrint:SetPaperSize(9)
@@ -85,9 +91,11 @@ Static Function MontaRel(cAlias)
 
   oPrint:EndPage()
   oPrint:Preview()
+  cConteudoLog += '['+Time()+'] - Finalizando o relatorio'+CRLF
 Return
 
 Static Function Cabecalho()
+  cConteudoLog += '['+Time()+'] - Adicionando o Cabeçalho do pedido'+CRLF
   oPrint:SayBitMap(15, 15, LOGO_EMPRESA, 300,90)
   oPrint:SayAlign(30, 15, "MICROSIGA SOFWARES S.A.", oFont18Bold,565,,,1)
   oPrint:SayAlign(47, 15, "AV. BRASIL, 329 CAMPINAS/SP 13098-888", oFont14,565,,,1)
@@ -97,6 +105,7 @@ Static Function Cabecalho()
 Return
 
 Static Function CabecaItens()
+  cConteudoLog += '['+Time()+'] - Adicionando o Cabeçalho dos itens'+CRLF
   oPrint:Box(nLinha,15,  nLinha+((nQtdItens+1)*12.4),45, '-6')
   oPrint:Box(nLinha,45,  nLinha+((nQtdItens+1)*12.4),115, '-6')
   oPrint:Box(nLinha,115, nLinha+((nQtdItens+1)*12.4),285, '-6')
@@ -159,6 +168,7 @@ Static Function ImprimeDados(cAlias)
   cFAXCli := '('+alltrim((cAlias)->(A1_DDD))+') '+TRANSFORM((alltrim((cAlias)->(A1_FAX))),'@R 9999-9999')
   cIECli := alltrim((cAlias)->(A1_INSCR))
 
+
   oPrint:Line(105, 15, 105, 580, PRETO,'-9')
   oPrint:SayAlign(110, 15, "Pedido de venda: Nº "+alltrim((cAlias)->(C5_NUM)), oFont16Bold,282,,,0)
   oPrint:SayAlign(110, 297, "Data: "+TRANSFORM((StoD((cAlias)->(C5_EMISSAO))),'@R 99/99/9999'), oFont16Bold,282,,,1)
@@ -195,7 +205,7 @@ Static Function ImprimeDados(cAlias)
   oPrint:Say(nLinha, 342,': '+cIECli, oFont12,, PRETO)
   nLinha+= 15
 
-
+  cConteudoLog += '['+Time()+'] - Adicionando os dados do cliente'+CRLF
 
   While (cAlias)->(!EOF())
     nQtdItens++
@@ -205,6 +215,7 @@ Static Function ImprimeDados(cAlias)
   CabecaItens()
   (cAlias)->(DbGoTop())
   While (cAlias)->(!EOF())
+    cConteudoLog += '['+Time()+'] - Adicionando o Item '+(cAlias)->(C6_ITEM)+CRLF
     nLinha+=12
     oPrint:SayAlign(nLinha, 15, alltrim((cAlias)->(C6_ITEM)),     oFont10,30,,,2)
     oPrint:SayAlign(nLinha, 45, alltrim((cAlias)->(C6_PRODUTO)),  oFont10,70,,,2)
@@ -223,8 +234,8 @@ Static Function ImprimeDados(cAlias)
   Rodap(cAlias)
 Return
 
-Static Function ValidPag()
-   if nLinha > MAX_LINE
+Static Function ValidPag()   
+  if nLinha > MAX_LINE
     oPrint:EndPage()
     oPrint:StartPage()
 
@@ -235,6 +246,7 @@ Static Function ValidPag()
 Return
 
 Static Function Resumo(cAlias)
+  cConteudoLog += '['+Time()+'] - Adicionando o Resumo'+CRLF
   //Criando as celulas de resumo
   nLinha+= 20
   oPrint:Box(nLinha,115, nLinha+27,305, '-6')
@@ -271,6 +283,7 @@ Static Function Rodap(cAlias)
   //Variaveis Globais
   Local nLinhaRod := 685
 
+  cConteudoLog += '['+Time()+'] - Adicionando oo rodape'+CRLF
   //Recebendo os dados ddo pedido
   cFormaPag := alltrim((cAlias)->(E4_CODIGO))+" - "+alltrim((cAlias)->(E4_DESCRI))
   cTransportadora := "("+alltrim((cAlias)->(A4_COD))+") "+alltrim((cAlias)->(A4_NOME))

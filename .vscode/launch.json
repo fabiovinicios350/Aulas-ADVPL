@@ -507,7 +507,37 @@
 		},
 		{
 			"label": "U_PlanCursos"
+		},
+		{
+			"label": "U_EscreveTXT"
+		},
+		{
+			"args": [
+				"LerTXT"
+			],
+			"label": "U_"
+		},
+		{
+			"label": "U_LerTXT"
+		},
+		{
+			"label": "U_CriarPasta"
+		},
+		{
+			"label": "U_DelPasta"
+		},
+		{
+			"label": "U_CopiaArq"
+		},
+		{
+			"label": "U_EscreverArq"
+		},
+		{
+			"label": "U_LerArq"
+		},
+		{
+			"label": "U_DelArq"
 		}
 	],
-	"lastProgramExecuted": "U_PlanProd"
+	"lastProgramExecuted": "SIGAFAT"
 }

@@ -1,0 +1,12 @@
+[17:03:39] - Gerando consulta SQL
+Log do pedido PV0029
+
+[17:03:39] - Criando o relatorio
+[17:03:39] -  Executando a Query no banco de dados
+[17:03:39] - Adicionando o Cabeçalho do pedido
+[17:03:39] - Adicionando os dados do cliente
+[17:03:39] - Adicionando o Cabeçalho dos itens
+[17:03:39] - Adicionando o Item 01
+[17:03:39] - Adicionando o Resumo
+[17:03:40] - Adicionando oo rodape
+[17:03:43] - Finalizando o relatorio
