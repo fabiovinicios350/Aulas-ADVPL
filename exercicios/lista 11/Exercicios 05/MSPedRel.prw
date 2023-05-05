@@ -6,7 +6,6 @@
 #DEFINE PRETO     RGB(0,0,0)
 #DEFINE VERMELHO  RGB(255,0,0)
 #DEFINE MAX_LINE  700
-
 /*/{Protheus.doc} User Function MSPrint
   FFunção para criar um relatorio de fornecedor
   @type  Function
