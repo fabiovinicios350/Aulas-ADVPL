@@ -537,7 +537,17 @@
 		},
 		{
 			"label": "U_DelArq"
+		},
+		{
+			"label": "U_IncAuto1"
+		},
+		{
+			"label": "U_AutInc1"
+		},
+		{
+			"label": "U_IncAutMVC"
 		}
 	],
-	"lastProgramExecuted": "SIGAFAT"
+	"lastProgramExecuted": "<cancel>",
+	"lastProgramArguments": []
 }
