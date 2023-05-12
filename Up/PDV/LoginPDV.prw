@@ -13,7 +13,7 @@
 
 //Função para definir o desconto de uma venda
 User Function LoginPDV()
-  
+
   //CSS
   Local cCssLogin :=;
   "QLineEdit {"+;
