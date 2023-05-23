@@ -112,7 +112,7 @@ static Function IncProd()
   Aadd(aVetor, {'B1_PRV1', cPrecoProd, NIL})
   
   //Executa a rotina automatica  
-  MSExecAuto({|x, y| MATA030(x, y)}, aVetor, nOper) //nOper = 3 - operacao de inclusao
+  MSExecAuto({|x, y| MATA010(x, y)}, aVetor, nOper) //nOper = 3 - operacao de inclusao
 
   //Se houver algum erro
   if lMsErroAuto
