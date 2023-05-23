@@ -71,7 +71,7 @@ Static Function fImporta()
         aLinha  := StrTokArr(cLinAtu, ";")
           
         //Se não for o cabeçalho (encontrar o texto "Código" na linha atual)
-        If ("codigo" <> Lower(aLinha[nPosCodigo])) .and. (ASC(aLinha[nPosAtivo])<>65)
+        If ("codigo" <> Lower(aLinha[nPosCodigo])) .and. (ASC(aLinha[nPosAtivo])==65)
           cCodProd   := aLinha[nPosCodigo]
           cDescrProd := aLinha[nPosDesc]
           cTipoProd  := aLinha[nPosTipo]
