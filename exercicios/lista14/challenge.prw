@@ -108,6 +108,7 @@ static Function IncProd()
   Aadd(aVetor, {'B1_DESC' ,cDescrProd, NIL})
   Aadd(aVetor, {'B1_TIPO', cTipoProd, NIL})
   Aadd(aVetor, {'B1_UM', cUnProd, NIL})
+  AADD(aVetor, {'B1_LOCPAD' , '01', nil})
   Aadd(aVetor, {'B1_PRV1', cPrecoProd, NIL})
   
   //Executa a rotina automatica  
