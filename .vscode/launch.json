@@ -550,7 +550,19 @@
 		{
 			"args": [],
 			"label": "u_LoginPDV"
+		},
+		{
+			"label": "U_IncCli"
+		},
+		{
+			"label": "U_AltCli"
+		},
+		{
+			"label": "U_ExcFor"
+		},
+		{
+			"label": "U_execProd"
 		}
 	],
-	"lastProgramExecuted": "U_LoginPDV"
+	"lastProgramExecuted": "U_execProd"
 }
